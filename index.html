@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <link rel="icon" type="image/svg+xml">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <ul class="navbar__list" role="tablist" data-render="nav"></ul>
+  <span class="navbar__sep" aria-hidden="true"></span>
+  <button class="navbar__lang" id="lang" type="button">
+    <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lang"/></svg>
+    <span data-bind="lang"></span>
+  </button>
+</nav>
+
+<main class="screen">
+
+  <section class="panel panel--about" id="panel-about" data-panel="about"
+           role="tabpanel" aria-labelledby="tab-about" tabindex="-1">
+
+    <div class="intro">
+      <div class="photo" data-render="photo"></div>
+
+      <h1 class="intro__name" data-bind="name"></h1>
+      <p class="intro__role" data-bind="role"></p>
+
+      <ul class="contacts" data-render="contacts"></ul>
+    </div>
+
+    <ul class="stats" data-render="stats"></ul>
+
+  </section>
+
+  <section class="panel panel--stack" id="panel-stack" data-panel="stack"
+           role="tabpanel" aria-labelledby="tab-stack" tabindex="-1" hidden>
+
+    <div data-render="common"></div>
+
+    <div class="catalog" data-render="stack-layout">
+      <div class="cards" data-render="stack"></div>
+    </div>
+
+  </section>
+
+  <section class="panel panel--projects" id="panel-projects" data-panel="projects"
+           role="tabpanel" aria-labelledby="tab-projects" tabindex="-1" hidden>
+
+    <div class="stage" data-render="projects-layout">
+      <div class="lead" data-render="projects"></div>
+    </div>
+
+  </section>
+
+  <section class="panel panel--career" id="panel-career" data-panel="career"
+           role="tabpanel" aria-labelledby="tab-career" tabindex="-1" hidden>
+
+    <div class="career" data-render="career-layout">
+      <div class="lead lead--left" data-render="career"></div>
+      <div class="roster" data-render="career-roster"></div>
+      <div class="career__traits" data-render="career-traits"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="js/assets.js"></script>
+<script src="js/schema.js"></script>
+<script src="js/text.ru.js"></script>
+<script src="js/text.en.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
