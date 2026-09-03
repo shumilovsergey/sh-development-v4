@@ -44,7 +44,12 @@
   };
 
   var NAV = SCHEMA.nav.map(function (n) {
-    return { id: n.id, ready: n.ready, label: TEXT.nav[n.id] };
+    var other = (lang === 'ru' ? EN : RU).nav || {};
+    return {
+      id: n.id, ready: n.ready,
+      label: TEXT.nav[n.id],
+      alt: other[n.id] || ''
+    };
   });
 
   var ABOUT = { stats: join(SCHEMA.stats, TEXT.about.stats) };
@@ -55,8 +60,6 @@
   };
 
   var ECOSYSTEM = {
-    title: TEXT.projects.title,
-    lede: TEXT.projects.lede,
     stack: SCHEMA.projects.stack,
     common: TEXT.projects.common,
     items: join(SCHEMA.projects.items, TEXT.projects.items),
@@ -163,7 +166,16 @@
       var li = el('li');
       li.setAttribute('role', 'presentation');
 
-      var btn = el('button', 'navlink', item.label);
+      var btn = el('button', 'navlink');
+      btn.appendChild(el('span', 'navlink__text', item.label));
+
+      [item.label, item.alt].forEach(function (word, i) {
+        if (!word || (i && word === item.label)) return;
+        var ghost = el('span', 'navlink__ghost', word);
+        ghost.setAttribute('aria-hidden', 'true');
+        btn.appendChild(ghost);
+      });
+
       btn.type = 'button';
       btn.id = 'tab-' + item.id;
       btn.dataset.tab = item.id;
@@ -732,9 +744,6 @@
       stack: ECOSYSTEM.stack
     },
     surface: function (box, hook) {
-      box.appendChild(el('h2', 'lead__title', ECOSYSTEM.title));
-      box.appendChild(el('p', 'lead__text', ECOSYSTEM.lede));
-
       var map = el('div', 'map');
       var nodes = {};
 

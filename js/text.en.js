@@ -71,11 +71,6 @@ const EN = {
   },
 
   projects: {
-    title: 'An ecosystem of my own',
-    lede:
-      'A small set of services I use to solve my own problems and, along the ' +
-      'way, to experiment with architecture, infrastructure and Go.',
-
     common: {
       title: 'How it works',
       lede: 'The pet projects grew out of work tasks: whatever was missing, I wrote. ' +
