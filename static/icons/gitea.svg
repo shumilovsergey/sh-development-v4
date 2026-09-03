@@ -1,14 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-  <path d="M4.8 7.4h14.4c0 6.2-2.2 9.6-6 9.6h-2.4c-3.8 0-6-3.4-6-9.6Z" fill="#3f8a28"/>
-  <path d="M5.1 9.1c-2.6.5-2.6 4.4.7 5" fill="none" stroke="#3f8a28" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M12.4 6.2v1.8" stroke="#fff" stroke-width=".9"/>
-  <rect x="9.6" y="8.5" width="6.6" height="6.6" rx="1.2" transform="rotate(-12 12.9 11.8)" fill="#fff"/>
-  <g fill="none" stroke="#3f8a28" stroke-width="1.1" stroke-linecap="round">
-    <path d="M11.7 10.2v3.4M14.6 10.6v1.1c0 .7-.6 1-1.4 1.2"/>
+  <path d="M3.83 6.27A3.85 3.85 0 0 0 7.07 13.22" fill="none" stroke="#3f8a28" stroke-width="1.9"/>
+  <path fill="#3f8a28" d="M3.2 5.3H22.9L23 6C22.9 9.5 22.6 12 21.7 13.9
+    C20.9 15.9 19.6 17.9 17.7 18.85H11.2C9.4 18.85 8 16.9 7.1 14.7
+    C6.2 12.4 5.4 9.6 5.2 7.4Z"/>
+  <path d="M14.35 5.4 14.05 10.2" stroke="#fff" stroke-width=".42"/>
+  <rect x="11.13" y="10.37" width="5.38" height="5.38" rx=".8" transform="rotate(31.3 13.82 13.06)" fill="#fff"/>
+  <g fill="none" stroke="#3f8a28" stroke-width=".62" stroke-linecap="round">
+    <path d="M13.7 10.9 12.1 14.5"/>
+    <path d="M13.9 11.3C15.6 12.4 15.7 13.9 14.3 15.15"/>
   </g>
   <g fill="#3f8a28">
-    <circle cx="11.6" cy="9.9" r=".9"/>
-    <circle cx="14.7" cy="10.3" r=".9"/>
-    <circle cx="11.9" cy="13.9" r=".9"/>
+    <circle cx="13.7" cy="10.9" r=".62"/>
+    <circle cx="12.1" cy="14.5" r=".62"/>
+    <circle cx="14.3" cy="15.15" r=".62"/>
   </g>
 </svg>

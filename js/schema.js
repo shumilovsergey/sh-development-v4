@@ -54,7 +54,7 @@ const SCHEMA = {
         stack: ['Gitea Workflows', 'Go', 'Python'] },
       { id: 'gitlab',      icon: 'gitlab',
         stack: ['GitLab CI'] },
-      { id: 'passwork',    icon: 'passwork',
+      { id: 'vault',       icon: 'vault',
         stack: ['secret manager'] },
       { id: 'ntfy',        icon: 'ntfy',
         stack: ['webhook', 'Grafana'] },

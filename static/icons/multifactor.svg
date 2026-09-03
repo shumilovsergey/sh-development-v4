@@ -1,10 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-  <rect x="1.8" y="1.8" width="20.4" height="20.4" rx="4.6" fill="#4e82b6"/>
-  <rect x="4.9" y="9.2" width="14.2" height="5.9" rx=".6" fill="none" stroke="#fff" stroke-width="1.4"/>
+  <defs>
+    <linearGradient id="mf" x1="12" y1="1" x2="12" y2="23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#719ec8"/>
+      <stop offset="1" stop-color="#3d7fb4"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.15" y="1" width="21.7" height="22" rx="1.9" fill="url(#mf)"/>
+  <rect x="5.57" y="9.17" width="13.02" height="5.1" fill="none" stroke="#fff" stroke-width=".26"/>
   <g fill="#fff">
-    <circle cx="7.9" cy="12.2" r="1.05"/>
-    <circle cx="10.6" cy="12.2" r="1.05"/>
-    <circle cx="13.4" cy="12.2" r="1.05"/>
-    <circle cx="16.1" cy="12.2" r="1.05"/>
+    <circle cx="8.1" cy="11.72" r=".72"/>
+    <circle cx="10.72" cy="11.72" r=".72"/>
+    <circle cx="13.38" cy="11.72" r=".72"/>
+    <circle cx="16" cy="11.72" r=".72"/>
   </g>
 </svg>

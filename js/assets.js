@@ -14,12 +14,12 @@ const ASSETS = {
     smallstep:   'static/icons/smallstep.svg',
     stepca:      'static/icons/stepca.svg',
     stormwall:   'static/icons/stormwall.svg',
-    usergate:    '',
+    usergate:    'static/icons/usergate.svg',
     multifactor: 'static/icons/multifactor.svg',
-    express:     '',
+    express:     'static/icons/express.svg',
     gitea:       'static/icons/gitea.svg',
     gitlab:      'static/icons/gitlab.svg',
-    passwork:    '',
+    vault:       'static/icons/vault.svg',
     ntfy:        'static/icons/ntfy.svg',
     youtrack:    'static/icons/youtrack.svg'
   }
