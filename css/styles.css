@@ -399,19 +399,19 @@ a  { color: inherit; }
 }
 
 .card__icon {
-  flex: none; width: 2.5rem; height: 2.5rem;
+  flex: none; width: 2.9rem; height: 2.9rem;
   display: grid; place-items: center;
   background: var(--bg-sunk);
   border: 1px solid var(--line-soft);
-  border-radius: 11px;
+  border-radius: 13px;
   color: var(--ink-faint);
   transition: color .18s ease, border-color .18s ease, background .18s ease;
 }
-.card__icon .icon { width: 1.25rem; height: 1.25rem; }
+.card__icon .icon { width: 2rem; height: 2rem; }
 
 .card__icon--logo { background: var(--bg-soft); }
 .card__icon--logo img {
-  width: 1.4rem; height: 1.4rem;
+  width: 2.2rem; height: 2.2rem;
   object-fit: contain;
 }
 

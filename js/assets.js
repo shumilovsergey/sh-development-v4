@@ -4,23 +4,23 @@ const ASSETS = {
   favicon: 'static/sh.svg',
 
   icons: {
-    monitoring:  '',
-    semaphore:   '',
-    isp:         '',
-    ptaf:        '',
-    thesis:      '',
-    r7:          '',
-    rudesktop:   '',
-    smallstep:   '',
-    stepca:      '',
-    stormwall:   '',
+    monitoring:  'static/icons/monitoring.svg',
+    semaphore:   'static/icons/semaphore.svg',
+    isp:         'static/icons/isp.svg',
+    ptaf:        'static/icons/ptaf.svg',
+    thesis:      'static/icons/thesis.svg',
+    r7:          'static/icons/r7.svg',
+    rudesktop:   'static/icons/rudesktop.svg',
+    smallstep:   'static/icons/smallstep.svg',
+    stepca:      'static/icons/stepca.svg',
+    stormwall:   'static/icons/stormwall.svg',
     usergate:    '',
-    multifactor: '',
+    multifactor: 'static/icons/multifactor.svg',
     express:     '',
-    gitea:       '',
-    gitlab:      '',
+    gitea:       'static/icons/gitea.svg',
+    gitlab:      'static/icons/gitlab.svg',
     passwork:    '',
-    ntfy:        '',
-    youtrack:    ''
+    ntfy:        'static/icons/ntfy.svg',
+    youtrack:    'static/icons/youtrack.svg'
   }
 };
