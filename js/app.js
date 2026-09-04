@@ -665,18 +665,30 @@
       };
     }
 
-    function route(a, z) {
+    function route(a, z, ay, zy) {
       var w = 2;
-      if (z.l - a.r >= z.t - a.b) {
-        var x1 = a.r + w, x2 = z.l - w, dx = Math.max(18, (x2 - x1) * 0.5);
-        return 'M' + x1 + ' ' + a.cy +
-               ' C' + (x1 + dx) + ' ' + a.cy + ',' + (x2 - dx) + ' ' + z.cy +
-               ',' + x2 + ' ' + z.cy;
+
+      if (z.l - a.r > 8) {
+        var x1 = a.r + w, x2 = z.l - w, dx = Math.max(20, (x2 - x1) * 0.55);
+        return 'M' + x1 + ' ' + ay +
+               ' C' + (x1 + dx) + ' ' + ay + ',' + (x2 - dx) + ' ' + zy +
+               ',' + x2 + ' ' + zy;
       }
+
       var y1 = a.b + w, y2 = z.t - w, dy = Math.max(18, (y2 - y1) * 0.5);
       return 'M' + a.cx + ' ' + y1 +
              ' C' + a.cx + ' ' + (y1 + dy) + ',' + z.cx + ' ' + (y2 - dy) +
              ',' + z.cx + ' ' + y2;
+    }
+
+    function fan(r, count, i) {
+      if (count < 2) return r.cy;
+      var band = Math.min((r.b - r.t) * 0.7, (count - 1) * 11);
+      return r.cy - band / 2 + band * i / (count - 1);
+    }
+
+    function has(list, id) {
+      return !!list && list.split(',').indexOf(id) !== -1;
     }
 
     function lit() {
@@ -684,7 +696,7 @@
       var id = current ? current.dataset.id : null;
 
       $$('.wire', lines).forEach(function (p) {
-        var on = !!id && (p.dataset.from === id || p.dataset.to === id);
+        var on = !!id && (has(p.dataset.from, id) || has(p.dataset.to, id));
         p.classList.toggle('is-live', on);
         p.setAttribute('marker-end', 'url(#' + (on ? 'wire-tip-live' : 'wire-tip') + ')');
         if (p.dataset.both) {
@@ -703,16 +715,40 @@
       layer.setAttribute('height', base.height);
       lines.textContent = '';
 
-      edges.forEach(function (e) {
-        var from = nodes[e[0]], to = nodes[e[1]];
-        if (!from || !to) return;
+      var box = {};
+      Object.keys(nodes).forEach(function (id) { box[id] = rect(nodes[id], base); });
+
+      var links = edges.filter(function (e) { return box[e[0]] && box[e[1]]; })
+        .map(function (e) {
+          return { from: e[0], to: e[1], both: e[2] === 'both' };
+        });
+
+      var out = {}, into = {};
+      links.forEach(function (e) {
+        (out[e.from] || (out[e.from] = [])).push(e);
+        (into[e.to] || (into[e.to] = [])).push(e);
+      });
+
+      var order = function (group, key, by) {
+        Object.keys(group).forEach(function (id) {
+          var list = group[id].slice().sort(function (p, q) {
+            return box[by(p)].cy - box[by(q)].cy;
+          });
+          list.forEach(function (e, i) { e[key] = i; e[key + 'n'] = list.length; });
+        });
+      };
+      order(out,  'oi', function (e) { return e.to; });
+      order(into, 'ii', function (e) { return e.from; });
+
+      links.forEach(function (e) {
+        var a = box[e.from], z = box[e.to];
 
         var p = svg('path');
         p.setAttribute('class', 'wire');
-        p.setAttribute('d', route(rect(from, base), rect(to, base)));
-        p.dataset.from = e[0];
-        p.dataset.to = e[1];
-        if (e[2] === 'both') p.dataset.both = '1';
+        p.setAttribute('d', route(a, z, fan(a, e.oin, e.oi), fan(z, e.iin, e.ii)));
+        p.dataset.from = e.from;
+        p.dataset.to = e.to;
+        if (e.both) p.dataset.both = '1';
         lines.appendChild(p);
       });
 
@@ -754,15 +790,22 @@
         ECOSYSTEM.items.filter(function (w) { return w.tier === kind; })
           .forEach(function (w) {
             var node = el('button', 'node');
-            node.appendChild(el('span', 'node__name', w.title));
 
-            if (w.lines) {
-              var rows = el('span', 'node__lines');
-              w.lines.forEach(function (t) { rows.appendChild(el('span', null, t)); });
-              node.appendChild(rows);
-            } else if (w.short) {
-              node.appendChild(el('span', 'node__role', w.short));
+            var badge = el('span', 'node__icon');
+            var logo = ASSETS.icons[w.id];
+
+            if (logo) {
+              var img = el('img');
+              img.src = logo;
+              img.alt = '';
+              badge.classList.add('node__icon--logo');
+              badge.appendChild(img);
+            } else {
+              badge.appendChild(icon(w.icon));
             }
+
+            node.appendChild(badge);
+            node.appendChild(el('span', 'node__name', w.title));
 
             nodes[w.id] = hook(node, w);
             col.appendChild(node);
@@ -777,12 +820,6 @@
       box.appendChild(map);
 
       wiring(map, nodes, ECOSYSTEM.edges);
-
-      var stack = el('div', 'lead__stack');
-      ECOSYSTEM.stack.forEach(function (t) {
-        stack.appendChild(el('span', 'tag', t));
-      });
-      box.appendChild(stack);
     }
   });
 

@@ -21,6 +21,15 @@ const ASSETS = {
     gitlab:      'static/icons/gitlab.svg',
     vault:       'static/icons/vault.svg',
     ntfy:        'static/icons/ntfy.svg',
-    youtrack:    'static/icons/youtrack.svg'
+    youtrack:    'static/icons/youtrack.svg',
+
+    homelab:     '',
+    menu:        'static/icons/menu.svg',
+    'nom-nom':   'static/icons/nom-nom.svg',
+    'wget-bash': 'static/icons/wget-bash.svg',
+    qcode:       'static/icons/qcode.svg',
+    blur:        '',
+    'auth-center': 'static/icons/auth.svg',
+    'auth-proxy':  'static/icons/auth.svg'
   }
 };
