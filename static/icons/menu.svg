@@ -14,8 +14,7 @@
   </defs>
 
   <!-- glass tile -->
-  <rect x="0.5" y="0.5" width="31" height="31" rx="8"
-        fill="url(#bg)" stroke="#ffffff" stroke-opacity="0.12"/>
+  <rect width="32" height="32" rx="8" fill="url(#bg)"/>
 
   <!-- app list: status dot + name bar per row -->
   <!-- row 1 — online -->

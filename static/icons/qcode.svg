@@ -4,7 +4,7 @@
      every icon in the ecosystem is. Gaps are wide enough that the three eyes
      stay separate at 16px. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="qcode">
-  <rect width="64" height="64" rx="15" fill="#191C20"/>
+  <rect width="64" height="64" rx="16" fill="#191C20"/>
 
   <!-- top-left eye — accent -->
   <rect x="11" y="11" width="18" height="18" fill="#E4628A"/>
