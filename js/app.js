@@ -514,15 +514,22 @@
     function viewOf(item) { return cfg.view ? cfg.view(item) : item; }
 
     function fill(v) {
+      var was = anchor();
       s.open = v.id || null;
 
-      s.title.textContent = '';
-      if (cfg.badge && v.id) s.title.appendChild(cfg.badge(v));
-      else if (v.icon) s.title.appendChild(icon(v.icon));
-      s.title.appendChild(document.createTextNode(v.title));
+      // a panel that lives over the page is never read holding the fallback —
+      // it only ever shows a picked entry. Repainting it on the way out swaps
+      // the text under the closing fade, which reads as a blink, so leave the
+      // last entry in place and let it fade out as itself.
+      if (s.open || !overlay) {
+        s.title.textContent = '';
+        if (cfg.badge && v.id) s.title.appendChild(cfg.badge(v));
+        else if (v.icon) s.title.appendChild(icon(v.icon));
+        s.title.appendChild(document.createTextNode(v.title));
 
-      s.body.textContent = '';
-      s.body.appendChild(buildDetails(v));
+        s.body.textContent = '';
+        s.body.appendChild(buildDetails(v));
+      }
 
       s.close.hidden = !overlay && !s.open;
 
@@ -530,7 +537,11 @@
       document.body.classList.toggle('is-locked', locks());
       syncInert();
       mark();
-      if (grow) place(true);
+
+      if (grow) {
+        if (s.open) place(true);
+        else if (was) collapse(was);
+      }
     }
 
     function anchor() {
@@ -574,6 +585,22 @@
       box.top = (up ? r.bottom - h : r.top) + 'px';
 
       if (fresh) reveal(r, up);
+    }
+
+    // closing runs the opening in reverse: the panel shrinks back into the card
+    // it grew out of, ending exactly on the node it is hiding, so there is
+    // nothing left to blink when it goes
+    function collapse(node) {
+      if (narrow.matches) { s.root.style.clipPath = ''; return; }
+
+      var r = node.getBoundingClientRect();
+      var box = s.root.getBoundingClientRect();
+      var side = Math.max(0, box.width - r.width);
+      var rest = Math.max(0, box.height - r.height);
+
+      s.root.style.clipPath = s.root.classList.contains('sheet--up')
+        ? 'inset(' + rest + 'px ' + side + 'px 0px 0px round var(--radius))'
+        : 'inset(0px ' + side + 'px ' + rest + 'px 0px round var(--radius))';
     }
 
     function reveal(r, up) {
