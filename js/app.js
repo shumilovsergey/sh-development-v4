@@ -116,6 +116,22 @@
     return node;
   };
 
+  var plate = function (base, id, fallback) {
+    var badge = el('span', base);
+    var logo = ASSETS.icons[id];
+
+    if (logo) {
+      var img = el('img');
+      img.src = logo;
+      img.alt = '';
+      badge.classList.add(base + '--logo');
+      badge.appendChild(img);
+    } else {
+      badge.appendChild(icon(fallback));
+    }
+    return badge;
+  };
+
   var mount = function (name) { return $('[data-render="' + name + '"]'); };
 
   var setText = function (name, text) {
@@ -439,7 +455,8 @@
   function board(cfg) {
     var sheetId = cfg.name + '-sheet';
     var titleId = cfg.name + '-sheet-title';
-    var overlay = cfg.dock === 'overlay';
+    var grow = cfg.dock === 'grow';
+    var overlay = grow || cfg.dock === 'overlay';
 
     var s = {
       root: null, layout: null, title: null,
@@ -450,7 +467,8 @@
     var targets = [];
 
     function buildSheet() {
-      var root = el('aside', 'sheet' + (overlay ? ' sheet--overlay' : ''));
+      var root = el('aside', 'sheet'
+        + (grow ? ' sheet--grow' : overlay ? ' sheet--overlay' : ''));
       root.id = sheetId;
       root.setAttribute('aria-labelledby', titleId);
 
@@ -499,7 +517,8 @@
       s.open = v.id || null;
 
       s.title.textContent = '';
-      if (v.icon) s.title.appendChild(icon(v.icon));
+      if (cfg.badge && v.id) s.title.appendChild(cfg.badge(v));
+      else if (v.icon) s.title.appendChild(icon(v.icon));
       s.title.appendChild(document.createTextNode(v.title));
 
       s.body.textContent = '';
@@ -511,6 +530,63 @@
       document.body.classList.toggle('is-locked', locks());
       syncInert();
       mark();
+      if (grow) place(true);
+    }
+
+    function anchor() {
+      return s.open && targets.filter(function (n) {
+        return n.dataset.id === s.open;
+      })[0];
+    }
+
+    function place(fresh) {
+      var node = anchor();
+      if (!node) return;
+
+      var box = s.root.style;
+
+      if (narrow.matches) {
+        box.left = box.top = box.width = box.clipPath = '';
+        s.root.classList.remove('sheet--up');
+        return;
+      }
+
+      var rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      var gap = rem;
+      var r = node.getBoundingClientRect();
+
+      var w = Math.max(Math.min(24 * rem, window.innerWidth - gap - r.left), r.width);
+      box.left = Math.min(r.left, window.innerWidth - gap - w) + 'px';
+      box.width = w + 'px';
+
+      // downwards by default; upwards when the panel would run past the fold
+      // and there is more room over the node than under it, so the node's own
+      // row ends up along the bottom of the panel
+      // the panel is pinned to the viewport, so it never lengthens the page:
+      // no tab is meant to scroll. It opens upwards when it would miss the
+      // fold below and fits whole in the room above, measured to the navbar.
+      var h = s.root.offsetHeight;
+      var under = window.innerHeight - r.top - gap;
+      var over = r.bottom - 5.6 * rem;
+      var up = h > under && over >= h;
+
+      s.root.classList.toggle('sheet--up', up);
+      box.top = (up ? r.bottom - h : r.top) + 'px';
+
+      if (fresh) reveal(r, up);
+    }
+
+    function reveal(r, up) {
+      var side = Math.max(0, s.root.offsetWidth - r.width);
+      var rest = Math.max(0, s.root.offsetHeight - r.height);
+
+      s.root.style.transition = 'none';
+      s.root.style.clipPath = up
+        ? 'inset(' + rest + 'px ' + side + 'px 0px 0px round var(--radius))'
+        : 'inset(0px ' + side + 'px ' + rest + 'px 0px round var(--radius))';
+      void s.root.offsetWidth;
+      s.root.style.transition = '';
+      s.root.style.clipPath = 'inset(0px 0px 0px 0px round var(--radius))';
     }
 
     function mark() {
@@ -580,7 +656,9 @@
       var onBreak = function () {
         document.body.classList.toggle('is-locked', locks());
         syncInert();
+        if (grow) place(false);
       };
+      if (grow) window.addEventListener('resize', function () { place(false); });
       if (narrow.addEventListener) narrow.addEventListener('change', onBreak);
       else narrow.addListener(onBreak);
     }
@@ -603,20 +681,7 @@
       STACK.items.forEach(function (p) {
         var card = el('button', 'card');
 
-        var badge = el('span', 'card__icon');
-        var logo = ASSETS.icons[p.id];
-
-        if (logo) {
-          var img = el('img');
-          img.src = logo;
-          img.alt = '';
-          badge.classList.add('card__icon--logo');
-          badge.appendChild(img);
-        } else {
-          badge.appendChild(icon(p.icon));
-        }
-
-        card.appendChild(badge);
+        card.appendChild(plate('card__icon', p.id, p.icon));
 
         card.appendChild(el('span', 'card__title', p.title));
         box.appendChild(hook(card, p));
@@ -771,7 +836,8 @@
 
   var worksBoard = board({
     name: 'projects',
-    dock: 'overlay',
+    dock: 'grow',
+    badge: function (v) { return plate('node__icon', v.id, v.icon); },
     items: ECOSYSTEM.items,
     fallback: {
       title: ECOSYSTEM.common.title,
@@ -791,20 +857,7 @@
           .forEach(function (w) {
             var node = el('button', 'node');
 
-            var badge = el('span', 'node__icon');
-            var logo = ASSETS.icons[w.id];
-
-            if (logo) {
-              var img = el('img');
-              img.src = logo;
-              img.alt = '';
-              badge.classList.add('node__icon--logo');
-              badge.appendChild(img);
-            } else {
-              badge.appendChild(icon(w.icon));
-            }
-
-            node.appendChild(badge);
+            node.appendChild(plate('node__icon', w.id, w.icon));
             node.appendChild(el('span', 'node__name', w.title));
 
             nodes[w.id] = hook(node, w);
