@@ -4,4 +4,7 @@
   <path d="M16 16H27" stroke="#c4b5fd" stroke-width="2" stroke-linecap="round"/>
   <path d="M22 16V21" stroke="#c4b5fd" stroke-width="2" stroke-linecap="round"/>
   <path d="M26 16V19" stroke="#c4b5fd" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x=".345" y=".345" width="31.31" height="31.31" rx="7.66"
+        fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width=".69"/>
 </svg>

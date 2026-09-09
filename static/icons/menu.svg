@@ -28,4 +28,7 @@
   <!-- row 3 -->
   <circle cx="9" cy="22.5" r="2" fill="#ffffff" fill-opacity="0.28"/>
   <rect x="13" y="21.3" width="8.5" height="2.4" rx="1.2" fill="#ffffff" fill-opacity="0.42"/>
+
+  <rect x=".345" y=".345" width="31.31" height="31.31" rx="7.66"
+        fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width=".69"/>
 </svg>

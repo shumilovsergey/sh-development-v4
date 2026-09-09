@@ -4,4 +4,7 @@
   <path d="M6 11L12 16L6 21" stroke="#c4c7de" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
   <!-- _ cursor -->
   <line x1="15" y1="21" x2="26" y2="21" stroke="#7a7d9a" stroke-width="2.2" stroke-linecap="round"/>
+
+  <rect x=".345" y=".345" width="31.31" height="31.31" rx="7.66"
+        fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width=".69"/>
 </svg>
