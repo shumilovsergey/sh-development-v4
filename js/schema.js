@@ -7,10 +7,10 @@ const SCHEMA = {
   ],
 
   contacts: [
-    { id: 'telegram', icon: 'telegram', href: '#' },
-    { id: 'mail',     icon: 'mail',     href: 'mailto:wumilovsergey@gmail.com' },
-    { id: 'github',   icon: 'github',   href: '#' },
-    { id: 'cv',       icon: 'cv',       action: 'print' }
+    { id: 'telegram', icon: 'telegram', href: 'https://t.me/sergey_showmelove' },
+    { id: 'mail',     icon: 'mail',     action: 'copy', copy: 'wumilovsergey@gmail.com' },
+    { id: 'github',   icon: 'github',   href: 'https://github.com/shumilovsergey' },
+    { id: 'cv',       icon: 'cv' }
   ],
 
   stats: [
@@ -18,7 +18,7 @@ const SCHEMA = {
     { id: 'apps',      value: 27 },
     { id: 'sites',     value: 22 },
     { id: 'articles',  value: 70 },
-    { id: 'tools',     value: 20, suffix: '+' },
+    { id: 'tools',     value: 20 },
     { id: 'postmortem', value: 15 }
   ],
 

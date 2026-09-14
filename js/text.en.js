@@ -9,7 +9,10 @@ const EN = {
   ui: {
     sections: 'Sections',
     switchLang: 'Switch to Russian',
-    close: 'Close'
+    close: 'Close',
+    copyMail: 'Copy email address',
+    copied: 'Address copied',
+    copyFail: 'Copy failed — the address is below'
   },
 
   person: {
@@ -33,12 +36,12 @@ const EN = {
 
   about: {
     stats: {
-      servers:    { label: 'servers',      note: 'Linux infrastructure' },
-      apps:       { label: 'applications', note: 'from WAF and PKI to ECM and messaging' },
-      sites:      { label: 'sites',        note: 'PHP | Go | Python' },
+      servers:    { label: 'servers',      note: 'docker pve k8s' },
+      apps:       { label: 'applications', note: 'waf pki ci-cd' },
+      sites:      { label: 'sites',        note: 'java go python' },
       articles:   { label: 'articles',     note: 'documentation' },
-      tools:      { label: 'tools',        note: 'my own codebase' },
-      postmortem: { label: 'postmortems',  note: 'incident and attack analysis' }
+      tools:      { label: 'tools',        note: 'codebase' },
+      postmortem: { label: 'postmortems',  note: 'incident analysis' }
     }
   },
 

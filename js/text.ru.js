@@ -9,7 +9,10 @@ const RU = {
   ui: {
     sections: 'Разделы',
     switchLang: 'Переключить на английский',
-    close: 'Закрыть'
+    close: 'Закрыть',
+    copyMail: 'Скопировать адрес почты',
+    copied: 'Адрес скопирован',
+    copyFail: 'Скопировать не вышло — адрес ниже'
   },
 
   person: {
@@ -33,12 +36,12 @@ const RU = {
 
   about: {
     stats: {
-      servers: { label: 'серверов', note: 'Linux инфраструктура' },
-      apps: { label: 'приложений', note: 'от WAF и PKI до СЭД и мессенджера' },
-      sites: { label: 'сайта', note: 'PHP | Go | Python' },
+      servers: { label: 'серверов', note: 'docker pve k8s' },
+      apps: { label: 'приложений', note: 'waf pki ci-cd' },
+      sites: { label: 'сайта', note: 'java go python' },
       articles: { label: 'статей', note: 'документация' },
-      tools: { label: 'инструментов', note: 'собственная кодовая база' },
-      postmortem: { label: 'постмортемов', note: 'разбор инцидентов и атак' }
+      tools: { label: 'инструментов', note: 'кодовая база' },
+      postmortem: { label: 'постмортемов', note: 'разбор инцидентов' }
     }
   },
 

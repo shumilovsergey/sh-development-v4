@@ -53,7 +53,7 @@
     photo: ASSETS.photo,
     contacts: SCHEMA.contacts.map(function (c) {
       return {
-        icon: c.icon, href: c.href, action: c.action,
+        icon: c.icon, href: c.href, action: c.action, copy: c.copy,
         label: TEXT.contacts[c.id]
       };
     })
@@ -335,23 +335,87 @@
     box.appendChild(img);
   }
 
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise(function (ok, fail) {
+      var area = el('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.cssText = 'position:fixed;top:-100vh;left:0;opacity:0';
+      document.body.appendChild(area);
+      area.select();
+      area.setSelectionRange(0, text.length);
+
+      var done = false;
+      try { done = document.execCommand('copy'); } catch (e) { done = false; }
+      document.body.removeChild(area);
+
+      done ? ok() : fail();
+    });
+  }
+
+  var toastBox = null;
+  var toastTimer = null;
+
+  function toast(title, body, ok) {
+    if (!toastBox) {
+      toastBox = el('div', 'toast');
+      toastBox.setAttribute('role', 'status');
+      toastBox.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toastBox);
+    }
+
+    toastBox.textContent = '';
+    if (ok) toastBox.appendChild(icon('check'));
+
+    var text = el('span', 'toast__text');
+    text.appendChild(el('span', 'toast__title', title));
+    if (body) text.appendChild(el('span', 'toast__body', body));
+    toastBox.appendChild(text);
+
+    toastBox.classList.remove('is-on');
+    void toastBox.offsetWidth;
+    toastBox.classList.add('is-on');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastBox.classList.remove('is-on'); }, 2600);
+  }
+
   function renderContacts() {
     var box = mount('contacts');
 
     PERSON.contacts.forEach(function (c) {
       var li = el('li');
 
-      var node = c.action ? el('button', 'contact') : el('a', 'contact');
+      var link = c.href && !c.action;
+      var node = link ? el('a', 'contact') : el('button', 'contact');
 
-      if (c.action === 'print') {
-        node.type = 'button';
-        node.addEventListener('click', function () { window.print(); });
-      } else {
+      if (link) {
         node.href = c.href;
         if (c.href.indexOf('http') === 0) { node.target = '_blank'; node.rel = 'noopener'; }
+      } else {
+        node.type = 'button';
       }
 
-      node.setAttribute('aria-label', c.label);
+      if (c.action === 'print') {
+        node.addEventListener('click', function () { window.print(); });
+      }
+
+      if (c.action === 'copy') {
+        node.setAttribute('aria-label', TEXT.ui.copyMail);
+        node.addEventListener('click', function () {
+          copyText(c.copy).then(
+            function () { toast(TEXT.ui.copied, c.copy, true); },
+            function () { toast(TEXT.ui.copyFail, c.copy, false); }
+          );
+        });
+      } else {
+        node.setAttribute('aria-label', c.label);
+      }
+
       node.appendChild(icon(c.icon));
       node.appendChild(el('span', 'contact__label', c.label));
 

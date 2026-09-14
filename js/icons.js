@@ -25,6 +25,9 @@ const ICONS = {
     '<line x1="16" y1="13" x2="8" y2="13"/>' +
     '<line x1="16" y1="17" x2="8" y2="17"/>',
 
+  check:
+    '<polyline points="4 12.5 9.5 18 20 6.5"/>',
+
   monitoring:
     '<polyline points="2 13.5 7 13.5 9.5 7.5 13 19 15.5 13.5 22 13.5"/>',
 
