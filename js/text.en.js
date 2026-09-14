@@ -8,7 +8,7 @@ const EN = {
 
   ui: {
     sections: 'Sections',
-    language: 'Interface language',
+    switchLang: 'Switch to Russian',
     close: 'Close'
   },
 

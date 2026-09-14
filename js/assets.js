@@ -20,7 +20,7 @@ const ASSETS = {
     gitea:       'static/icons/gitea.svg',
     gitlab:      'static/icons/gitlab.svg',
     vault:       'static/icons/vault.svg',
-    ntfy:        'static/icons/ntfy.svg',
+    bitrix:      'static/icons/bitrix.svg',
     youtrack:    'static/icons/youtrack.svg',
 
     homelab:     '',

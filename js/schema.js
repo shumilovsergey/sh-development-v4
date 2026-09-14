@@ -1,9 +1,9 @@
 const SCHEMA = {
   nav: [
-    { id: 'about',    ready: true },
-    { id: 'stack',    ready: true },
-    { id: 'projects', ready: true },
-    { id: 'career',   ready: true }
+    { id: 'about',    ready: true }
+    // { id: 'stack',    ready: true },
+    // { id: 'projects', ready: true },
+    // { id: 'career',   ready: true }
   ],
 
   contacts: [
@@ -56,8 +56,8 @@ const SCHEMA = {
         stack: ['GitLab CI'] },
       { id: 'vault',       icon: 'vault',
         stack: ['secret manager'] },
-      { id: 'ntfy',        icon: 'ntfy',
-        stack: ['webhook', 'Grafana'] },
+      { id: 'bitrix',      icon: 'bitrix',
+        stack: ['Bitrix24'] },
       { id: 'youtrack',    icon: 'youtrack',
         stack: ['YouTrack', 'Knowledge Base'] }
     ]

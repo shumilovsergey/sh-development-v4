@@ -4,10 +4,26 @@
   var LANGS = { ru: RU, en: EN };
   var LANG_KEY = 'sh-lang';
 
+  var RU_ZONES = /^(Europe\/(Moscow|Kaliningrad|Samara|Volgograd|Astrakhan|Saratov|Ulyanovsk|Kirov|Minsk)|Asia\/(Yekaterinburg|Omsk|Novosibirsk|Barnaul|Tomsk|Novokuznetsk|Krasnoyarsk|Irkutsk|Chita|Yakutsk|Khandyga|Vladivostok|Ust-Nera|Magadan|Sakhalin|Srednekolymsk|Kamchatka|Anadyr|Almaty|Aqtobe|Aqtau|Atyrau|Oral|Qostanay|Qyzylorda|Bishkek))$/;
+
+  function guessLang() {
+    var list = navigator.languages || [navigator.language || ''];
+
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i]).toLowerCase();
+      if (code.indexOf('ru') === 0) return 'ru';
+      if (code.indexOf('en') === 0) return 'en';
+    }
+
+    var zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    return RU_ZONES.test(zone) ? 'ru' : 'en';
+  }
+
   var lang = (function () {
     var saved = null;
     try { saved = localStorage.getItem(LANG_KEY); } catch (e) { saved = null; }
-    return LANGS[saved] ? saved : 'ru';
+    return LANGS[saved] ? saved : guessLang();
   })();
 
   function fallback(base, over) {
@@ -267,8 +283,9 @@
 
   function renderLang() {
     var btn = $('#lang');
-    setText('lang', TEXT.lang.label);
-    btn.setAttribute('aria-label', TEXT.ui.language);
+    var other = lang === 'ru' ? EN : RU;
+    setText('lang', other.lang.label);
+    btn.setAttribute('aria-label', TEXT.ui.switchLang);
 
     btn.addEventListener('click', function () {
       try { localStorage.setItem(LANG_KEY, lang === 'ru' ? 'en' : 'ru'); } catch (e) {}
