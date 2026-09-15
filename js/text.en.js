@@ -1,6 +1,6 @@
 const EN = {
   meta: {
-    title: 'sh-development',
+    title: 'sh',
     description: 'Sergey Shumilov — DevOps / Software Engineer'
   },
 

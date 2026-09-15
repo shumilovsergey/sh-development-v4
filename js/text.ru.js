@@ -1,6 +1,6 @@
 const RU = {
   meta: {
-    title: 'sh-development',
+    title: 'sh',
     description: 'Сергей Шумилов — DevOps / Software Engineer'
   },
 
