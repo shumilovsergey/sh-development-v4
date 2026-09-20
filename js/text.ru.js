@@ -40,7 +40,7 @@ const RU = {
       apps: { label: 'приложений', note: 'waf pki ci-cd' },
       sites: { label: 'сайта', note: 'java go python' },
       articles: { label: 'статей', note: 'документация' },
-      tools: { label: 'инструментов', note: 'кодовая база' },
+      tools: { label: 'репозиториев', note: 'кодовая база' },
       postmortem: { label: 'постмортемов', note: 'разбор инцидентов' }
     }
   },
