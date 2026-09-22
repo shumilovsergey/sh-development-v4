@@ -1,0 +1,66 @@
+name: Deploy .ru to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+# Имя издания. Должно совпадать с ключом в таблице js/site.js.
+env:
+  EDITION: RU
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Скопировать сайт
+        run: |
+          set -eu
+          mkdir _site
+          tar -c --exclude=_site --exclude-from=.assetsignore . | tar -x -C _site
+
+      # Единственное, что выкладка сообщает о себе, — имя издания.
+      # Что оно значит, знает таблица в js/site.js, а не этот файл.
+      # Шаг падает, если имени нет в таблице: издание, которого никто
+      # не описал, тихо разрешилось бы в дефолтное.
+      - name: Назначить издание
+        run: |
+          set -eu
+          printf "window.EDITION = '%s';\n" "$EDITION" > _site/js/edition.js
+          grep -qE "^[[:space:]]*$EDITION[[:space:]]*:" _site/js/site.js \
+            || { echo "издание $EDITION не описано в js/site.js"; exit 1; }
+
+      # Отсюда и ниже — своё у каждого проекта: то, что нельзя решить
+      # из js, потому что читается до него.
+      - name: Доводка статики
+        run: |
+          set -eu
+          sed -i 's|<html lang="en"|<html lang="ru"|' _site/index.html
+          printf 'sh-development.ru' > _site/CNAME
+
+          grep -q '<html lang="ru"' _site/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
