@@ -155,8 +155,8 @@ const RU = {
         ]
       },
 
-      stepca: {
-        title: 'step-ca / SSH',
+      pki: {
+        title: 'PKI',
         summary: 'Перевёл SSH на короткоживущие сертификаты с 2FA и возможностью централизованно отозвать доступ.',
         details: [
           'Перевёл SSH на доступ по коротким сертификатам.',
@@ -215,11 +215,11 @@ const RU = {
         ]
       },
 
-      gitlab: {
-        title: 'GitLab',
-        summary: 'CI/CD-автоматизация: build, test, deploy.',
+      keycloak: {
+        title: 'Keycloak',
+        summary: 'TODO: переписать — текст ещё не написан.',
         details: [
-          'Автоматизация build, test, deploy через GitLab CI.'
+          'TODO: чем занимался.'
         ]
       },
 

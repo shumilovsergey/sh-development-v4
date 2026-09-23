@@ -1,7 +1,7 @@
 const SCHEMA = {
   nav: [
-    { id: 'about',    ready: true }
-    // { id: 'stack',    ready: true },
+    { id: 'about',    ready: true },
+    { id: 'stack',    ready: true }
     // { id: 'projects', ready: true },
     // { id: 'career',   ready: true }
   ],
@@ -40,7 +40,7 @@ const SCHEMA = {
         stack: ['PXE', 'DHCP', 'TFTP', 'HTTP'] },
       { id: 'smallstep',   icon: 'smallstep',
         stack: ['PKI', 'CRL'] },
-      { id: 'stepca',      icon: 'stepca',
+      { id: 'pki',         icon: 'pki',
         stack: ['step-ca', 'SSH-сертификаты', '2FA'] },
       { id: 'stormwall',   icon: 'stormwall',
         stack: ['SaaS', 'firewall', 'Prometheus exporter'] },
@@ -52,8 +52,8 @@ const SCHEMA = {
         stack: ['self-hosted мессенджер', 'Smart Apps', 'боты'] },
       { id: 'gitea',       icon: 'gitea',
         stack: ['Gitea Workflows', 'Go', 'Python'] },
-      { id: 'gitlab',      icon: 'gitlab',
-        stack: ['GitLab CI'] },
+      { id: 'keycloak',    icon: 'key',
+        stack: ['Keycloak', 'OIDC', 'SAML', 'LDAP'] },
       { id: 'vault',       icon: 'vault',
         stack: ['secret manager'] },
       { id: 'bitrix',      icon: 'bitrix',

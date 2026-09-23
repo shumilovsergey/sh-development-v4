@@ -508,12 +508,6 @@
 
     if (v.note) frag.appendChild(el('p', 'card__note', v.note));
 
-    if (v.stack) {
-      var stack = el('div', 'card__stack');
-      v.stack.forEach(function (t) { stack.appendChild(el('span', 'tag', t)); });
-      frag.appendChild(stack);
-    }
-
     return frag;
   }
 
@@ -748,6 +742,13 @@
         if (e.key === 'Escape' && s.open) reset(true);
       });
 
+      document.addEventListener('click', function (e) {
+        if (!s.open) return;
+        if (s.root.contains(e.target)) return;
+        if (targets.some(function (n) { return n.contains(e.target); })) return;
+        reset(false);
+      });
+
       var onBreak = function () {
         document.body.classList.toggle('is-locked', locks());
         syncInert();
@@ -767,6 +768,7 @@
     name: 'stack',
     dock: 'column',
     items: STACK.items,
+    badge: function (v) { return plate('sheet__logo', v.id, v.icon); },
     fallback: {
       title: STACK.common.title,
       summary: STACK.common.lede,
