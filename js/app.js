@@ -521,7 +521,7 @@
     var overlay = grow || cfg.dock === 'overlay';
 
     var s = {
-      root: null, layout: null, title: null,
+      root: null, inner: null, layout: null, title: null,
       body: null, close: null, scrim: null,
       open: null
     };
@@ -560,6 +560,7 @@
       scrim.addEventListener('click', function () { reset(true); });
 
       s.root = root;
+      s.inner = inner;
       s.title = title;
       s.body = body;
       s.close = close;
@@ -744,7 +745,7 @@
 
       document.addEventListener('click', function (e) {
         if (!s.open) return;
-        if (s.root.contains(e.target)) return;
+        if (s.inner.contains(e.target)) return;
         if (targets.some(function (n) { return n.contains(e.target); })) return;
         reset(false);
       });
