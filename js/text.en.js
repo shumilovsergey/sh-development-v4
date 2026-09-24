@@ -12,7 +12,7 @@ const EN = {
     close: 'Close',
     copyMail: 'Copy email address',
     copied: 'Address copied',
-    copyFail: 'Copy failed — the address is below'
+    copyFail: 'Could not copy — address below'
   },
 
   person: {
@@ -24,7 +24,7 @@ const EN = {
     telegram: 'Telegram',
     mail: 'Email',
     github: 'GitHub',
-    cv: 'CV as PDF'
+    cv: 'CV in PDF'
   },
 
   nav: {
@@ -36,42 +36,235 @@ const EN = {
 
   about: {
     stats: {
-      servers:    { label: 'servers',      note: 'docker pve k8s' },
-      apps:       { label: 'applications', note: 'waf pki ci-cd' },
-      sites:      { label: 'sites',        note: 'java go python' },
-      articles:   { label: 'articles',     note: 'documentation' },
-      tools:      { label: 'tools',        note: 'codebase' },
-      postmortem: { label: 'postmortems',  note: 'incident analysis' }
+      servers: { label: 'servers', note: 'docker pve k8s' },
+      apps: { label: 'applications', note: 'waf pki ci-cd' },
+      sites: { label: 'sites', note: 'java go python' },
+      articles: { label: 'articles', note: 'documentation' },
+      tools: { label: 'repositories', note: 'codebase' },
+      postmortem: { label: 'postmortems', note: 'incident reviews' }
     }
   },
 
   stack: {
     common: {
-      title: 'Work common to every system',
-      lede: 'Tasks across these systems overlap a lot — rather than repeat ' +
-        'the same list on every card, the shared part lives here.',
+      title: 'Work Principles',
+      lede: '',
       items: [
-        'install, deploy, update, troubleshooting',
-        'code review',
-        'talking to vendors, negotiating better terms',
-        'automated dev → prod deployment',
-        'writing everything down in the knowledge base',
-        'monitoring and alerting',
-        'database tuning and backups',
-        'postmortems after attacks',
-        'LDAPS authentication, LDAP adapters for 2FA',
-        'nftables management, access segmentation',
-        'UI administration'
+        'Automation over manual operations',
+        'Critical services are redundant, critical data is backed up',
+        'The authentication chain matters more than password complexity',
+        'Zero trust — everything not explicitly required stays closed',
+        'Secrets are rotated — backups are tested',
+        'Knowledge belongs in the knowledge base, not in one person\'s head'
       ]
     },
 
     items: {
-      monitoring: { title: 'Monitoring' },
-      thesis:     { title: 'TEZIS' },
-      r7:         { title: 'R7-Office' },
-      youtrack:   { title: 'YouTrack / knowledge base' }
+      monitoring: {
+        title: 'Monitoring',
+        details: [
+          'Full migration from Zabbix to Grafana, Prometheus, Thanos, Loki',
+          'Long-term metric storage with Thanos',
+          'Exporter deployment via Ansible',
+          'Dynamic dashboards for the entire Linux + Windows fleet',
+          'Alerting without the noise of false positives',
+          'Clean and readable notifications in messengers'
+        ]
+      },
+
+      semaphore: {
+        title: 'Semaphore / Ansible',
+        details: [
+          'Introduced Ansible as a management culture',
+          'Separated admin permissions through Semaphore UI',
+          'Continuously maintain the role and playbook library',
+          'Added infrastructure versioning through Gitea',
+          'Changes became transparent — who changed what and when'
+        ]
+      },
+
+      isp: {
+        title: 'ISPmanager',
+        details: [
+          '40 PHP/WordPress sites and two development teams',
+          'Fine-tuned caching',
+          'Many sites on one server — one slow site affects the others',
+          'Custom dashboard based on Prometheus metrics and Loki logs',
+          'Wrote a usage guide — downtime dropped significantly'
+        ]
+      },
+
+      ptaf: {
+        title: 'PTAF',
+        details: [
+          'Deployment and support of a Kubernetes application',
+          'Traffic analysis and attack protection',
+          'Network routing configuration',
+          'Built an exporter for metrics, alerts and visualizations'
+        ]
+      },
+
+      thesis: {
+        title: 'Thesis DMS',
+        details: [
+          'Deployment and support of a Java application',
+          'Elasticsearch integration improved search performance',
+          'R7 Office integration for collaborative document editing',
+          'Kerberos and SSO integration for authentication',
+          'Built an exporter for task scheduler monitoring',
+          'Built a utility to automatically capture memory dumps on application failure',
+          'Introduced hard-link backups to reduce storage usage'
+        ]
+      },
+
+      r7: {
+        title: 'R7 Office',
+        details: [
+          'Deployment and support of a .NET application',
+          'Distributed the application across 7 servers for fault tolerance',
+          'Migrated the database to a PostgreSQL cluster with automatic leader failover',
+          'Built an LDAPS synchronization module with nested group permission inheritance',
+          'Tested recovery scenarios for deleted documents'
+        ]
+      },
+
+      rudesktop: {
+        title: 'RuDesktop',
+        details: [
+          'Deployment and support of a Python application',
+          'Automated Windows network installation',
+          'Ansible controller for managing the Windows fleet',
+          'Implemented two network installation scenarios — PXE and WinBoot',
+          'Automated answers during installation',
+          'Domain policy distribution',
+          'Automated RuDesktop agent deployment for remote user support'
+        ]
+      },
+
+      smallstep: {
+        title: 'Smallstep',
+        details: [
+          'Deployment and support of a Go application',
+          'Integrated Smallstep into the existing PKI system',
+          'Replaced static SSH keys with certificates',
+          'Preserved the admin permission model during the migration to certificates',
+          'Set up auditing and logging of admin actions',
+          'Added 2FA to SSH access'
+        ]
+      },
+
+      pki: {
+        title: 'PKI',
+        details: [
+          'Offline Root Certificate Authority',
+          'Intermediate Certificate Authorities',
+          'Issuing Certificate Authorities',
+          'Certificate Revocation List publication',
+          'Automatic issuance of short-lived client certificates',
+          'Repository of templates and configurations for all PKI entities'
+        ]
+      },
+
+      stormwall: {
+        title: 'StormWall',
+        details: [
+          'External perimeter firewall support',
+          'Routing configuration and DNS management',
+          'External traffic balancing between services',
+          'DDoS attack protection',
+          'Built an exporter to monitor traffic and RPS across different network segments'
+        ]
+      },
+
+      usergate: {
+        title: 'UserGate',
+        details: [
+          'Internal perimeter firewall support',
+          'Access rules and routing configuration',
+          'Traffic analysis between network segments',
+          'Network connectivity troubleshooting'
+        ]
+      },
+
+      multifactor: {
+        title: 'MultiFactor',
+        details: [
+          'Centralized 2FA for all internal services',
+          'Adapter integration and support',
+          'Real client IP tracking',
+          'Different authentication flows for internal and external access'
+        ]
+      },
+
+      express: {
+        title: 'Express',
+        details: [
+          'Deployment and support of a Docker Compose application',
+          'Messenger support for 700 daily users',
+          'MS Outlook integration',
+          'Video conference scheduling through the calendar',
+          'Built bots for alerts and service notifications'
+        ]
+      },
+
+      gitea: {
+        title: 'Gitea',
+        details: [
+          'Automated application deployment through Gitea Actions',
+          'Version control for Ansible and service configurations',
+          'Repositories for internal projects',
+          'A culture of short and meaningful README.md files'
+        ]
+      },
+
+      keycloak: {
+        title: 'Keycloak',
+        details: [
+          'Central authentication hub for internal services',
+          'MultiFactor integration for 2FA',
+          'LDAPS integration',
+          'Kerberos integration',
+          'Realm structure based on security policies'
+        ]
+      },
+
+      vault: {
+        title: 'Vault',
+        details: [
+          'Single point for secrets across pipelines, services and employees',
+          'Knowledge base integration — links to secrets instead of secrets themselves',
+          'Zero trust — access to secrets without exposing them in plain text',
+          'Centralized secret rotation'
+        ]
+      },
+
+      bitrix: {
+        title: 'Bitrix24',
+        details: [
+          'Deployment and support of a PHP application',
+          'Introduced a site template system',
+          'Set up multilingual support',
+          'Automated deployment — developers do not need server access',
+          'Separated Dev and Prod environments',
+          'Set up failover to a standby instance with minimal downtime'
+        ]
+      },
+
+      youtrack: {
+        title: 'Knowledge Base',
+        details: [
+          'Documentation is as much a part of infrastructure as code and configs',
+          'The entire environment should be documented',
+          '.md keeps documentation simple and consistent',
+          'Technical accuracy should not come at the cost of clarity',
+          'If a word can be removed without losing meaning — it is unnecessary'
+        ]
+      }
     }
   },
+
+
+// ------- Projects -------
 
   projects: {
     common: {

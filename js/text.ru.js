@@ -84,7 +84,7 @@ const RU = {
       },
 
       isp: {
-        title: 'ISPmanager ?? пинтест',
+        title: 'ISPmanager',
         details: [
           '40 PHP/WordPress-сайтов и две команды разработчиков.',
           'Тонкая настройка кэша.',
