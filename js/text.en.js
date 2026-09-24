@@ -63,10 +63,10 @@ const EN = {
       monitoring: {
         title: 'Monitoring',
         details: [
-          'Full migration from Zabbix to Grafana, Prometheus, Thanos, Loki',
+          'Clean migration from Zabbix to Grafana, Prometheus, Thanos, Loki',
           'Long-term metric storage with Thanos',
           'Exporter deployment via Ansible',
-          'Dynamic dashboards for the entire Linux + Windows fleet',
+          'A system of dynamic dashboards covering the whole Linux + Windows fleet',
           'Alerting without the noise of false positives',
           'Clean and readable notifications in messengers'
         ]
@@ -75,7 +75,7 @@ const EN = {
       semaphore: {
         title: 'Semaphore / Ansible',
         details: [
-          'Introduced Ansible as a management culture',
+          'Made Ansible the way infrastructure is managed, not just another tool',
           'Separated admin permissions through Semaphore UI',
           'Continuously maintain the role and playbook library',
           'Added infrastructure versioning through Gitea',
@@ -88,16 +88,16 @@ const EN = {
         details: [
           '40 PHP/WordPress sites and two development teams',
           'Fine-tuned caching',
-          'Many sites on one server — one slow site affects the others',
+          'Many sites on one server — one slow site drags down the rest',
           'Custom dashboard based on Prometheus metrics and Loki logs',
-          'Wrote a usage guide — downtime dropped significantly'
+          'Wrote a usage guide — downtime dropped several times over'
         ]
       },
 
       ptaf: {
         title: 'PTAF',
         details: [
-          'Deployment and support of a Kubernetes application',
+          'Deployment and support of an application running in Kubernetes',
           'Traffic analysis and attack protection',
           'Network routing configuration',
           'Built an exporter for metrics, alerts and visualizations'
@@ -113,7 +113,7 @@ const EN = {
           'Kerberos and SSO integration for authentication',
           'Built an exporter for task scheduler monitoring',
           'Built a utility to automatically capture memory dumps on application failure',
-          'Introduced hard-link backups to reduce storage usage'
+          'Introduced hard-link backups, which cut storage usage'
         ]
       },
 
@@ -124,7 +124,7 @@ const EN = {
           'Distributed the application across 7 servers for fault tolerance',
           'Migrated the database to a PostgreSQL cluster with automatic leader failover',
           'Built an LDAPS synchronization module with nested group permission inheritance',
-          'Tested recovery scenarios for deleted documents'
+          'Rehearsed recovery scenarios for deleted documents'
         ]
       },
 
@@ -135,7 +135,7 @@ const EN = {
           'Automated Windows network installation',
           'Ansible controller for managing the Windows fleet',
           'Implemented two network installation scenarios — PXE and WinBoot',
-          'Automated answers during installation',
+          'Automated answers to installation prompts',
           'Domain policy distribution',
           'Automated RuDesktop agent deployment for remote user support'
         ]
@@ -192,7 +192,7 @@ const EN = {
           'Centralized 2FA for all internal services',
           'Adapter integration and support',
           'Real client IP tracking',
-          'Different authentication flows for internal and external access'
+          'Different authentication flows for the internal and external perimeter'
         ]
       },
 
