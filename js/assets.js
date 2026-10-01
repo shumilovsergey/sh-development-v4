@@ -6,7 +6,7 @@ const ASSETS = {
   icons: {
     monitoring:  'static/icons/monitoring.svg',
     semaphore:   'static/icons/semaphore.svg',
-    isp:         'static/icons/isp.svg',
+    isp:         'static/icons/openvas.svg',
     ptaf:        'static/icons/ptaf.svg',
     thesis:      'static/icons/thesis.svg',
     r7:          'static/icons/r7.svg',

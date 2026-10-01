@@ -1,8 +1,8 @@
 const SCHEMA = {
   nav: [
     { id: 'about',    ready: true },
-    { id: 'stack',    ready: true }
-    // { id: 'projects', ready: true },
+    { id: 'stack',    ready: true },
+    { id: 'projects', ready: true }
     // { id: 'career',   ready: true }
   ],
 
@@ -16,10 +16,7 @@ const SCHEMA = {
   stats: [
     { id: 'servers',   value: 150 },
     { id: 'apps',      value: 27 },
-    { id: 'sites',     value: 22 },
-    { id: 'articles',  value: 70 },
-    { id: 'tools',     value: 20 },
-    { id: 'postmortem', value: 15 }
+    { id: 'sites',     value: 22 }
   ],
 
   stack: {
@@ -28,38 +25,38 @@ const SCHEMA = {
         stack: ['Grafana', 'Thanos', 'Prometheus', 'Loki', 'Ansible'] },
       { id: 'semaphore',   icon: 'semaphore',
         stack: ['Ansible', 'Semaphore UI'] },
+      { id: 'pki',         icon: 'pki',
+        stack: ['step-ca', 'SSH-сертификаты', '2FA'] },
+      { id: 'youtrack',    icon: 'youtrack',
+        stack: ['YouTrack', 'Knowledge Base'] },
+      { id: 'bitrix',      icon: 'bitrix',
+        stack: ['Bitrix24'] },
       { id: 'isp',         icon: 'isp',
         stack: ['PHP', 'MySQL', 'WordPress', 'Prometheus', 'Loki'] },
       { id: 'ptaf',        icon: 'ptaf',
         stack: ['Kubernetes', 'IMAP', 'Telegram Bot API'] },
       { id: 'thesis',      icon: 'thesis',
         stack: ['Java (CUBA)', 'MySQL', 'Elasticsearch', 'Kerberos'] },
-      { id: 'r7',          icon: 'r7',
-        stack: ['Java', 'PostgreSQL', 'repmgr', 'LDAPS'] },
-      { id: 'rudesktop',   icon: 'rudesktop',
-        stack: ['PXE', 'DHCP', 'TFTP', 'HTTP'] },
-      { id: 'smallstep',   icon: 'smallstep',
-        stack: ['PKI', 'CRL'] },
-      { id: 'pki',         icon: 'pki',
-        stack: ['step-ca', 'SSH-сертификаты', '2FA'] },
-      { id: 'stormwall',   icon: 'stormwall',
-        stack: ['SaaS', 'firewall', 'Prometheus exporter'] },
-      { id: 'usergate',    icon: 'usergate',
-        stack: ['firewall'] },
-      { id: 'multifactor', icon: 'multifactor',
-        stack: ['TOTP', 'LDAP-адаптеры'] },
-      { id: 'express',     icon: 'express',
-        stack: ['self-hosted мессенджер', 'Smart Apps', 'боты'] },
       { id: 'gitea',       icon: 'gitea',
         stack: ['Gitea Workflows', 'Go', 'Python'] },
+      { id: 'smallstep',   icon: 'smallstep',
+        stack: ['PKI', 'CRL'] },
+      { id: 'multifactor', icon: 'multifactor',
+        stack: ['TOTP', 'LDAP-адаптеры'] },
+      { id: 'stormwall',   icon: 'stormwall',
+        stack: ['SaaS', 'firewall', 'Prometheus exporter'] },
+      { id: 'rudesktop',   icon: 'rudesktop',
+        stack: ['PXE', 'DHCP', 'TFTP', 'HTTP'] },
       { id: 'keycloak',    icon: 'key',
         stack: ['Keycloak', 'OIDC', 'SAML', 'LDAP'] },
+      { id: 'express',     icon: 'express',
+        stack: ['self-hosted мессенджер', 'Smart Apps', 'боты'] },
       { id: 'vault',       icon: 'vault',
         stack: ['secret manager'] },
-      { id: 'bitrix',      icon: 'bitrix',
-        stack: ['Bitrix24'] },
-      { id: 'youtrack',    icon: 'youtrack',
-        stack: ['YouTrack', 'Knowledge Base'] }
+      { id: 'usergate',    icon: 'usergate',
+        stack: ['firewall'] },
+      { id: 'r7',          icon: 'r7',
+        stack: ['Java', 'PostgreSQL', 'repmgr', 'LDAPS'] }
     ]
   },
 

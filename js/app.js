@@ -64,6 +64,7 @@
 
   var ECOSYSTEM = {
     stack: SCHEMA.projects.stack,
+    tiers: TEXT.projects.tiers,
     common: TEXT.projects.common,
     items: join(SCHEMA.projects.items, TEXT.projects.items),
     edges: SCHEMA.projects.edges
@@ -580,7 +581,7 @@
       var was = anchor();
       s.open = v.id || null;
 
-      // a panel that lives over the page is never read holding the fallback —
+      // a panel that lives over the page is never read holding the fallback -
       // it only ever shows a picked entry. Repainting it on the way out swaps
       // the text under the closing fade, which reads as a blink, so leave the
       // last entry in place and let it fade out as itself.
@@ -776,6 +777,17 @@
       details: STACK.common.items
     },
     surface: function (box, hook) {
+      var common = {
+        id: 'common', icon: 'principles',
+        title: STACK.common.title,
+        summary: STACK.common.lede,
+        details: STACK.common.items
+      };
+      var lead = el('button', 'card card--common');
+      lead.appendChild(plate('card__icon', common.id, common.icon));
+      lead.appendChild(el('span', 'card__title', common.title));
+      box.appendChild(hook(lead, common));
+
       STACK.items.forEach(function (p) {
         var card = el('button', 'card');
 
@@ -965,9 +977,9 @@
         return col;
       };
 
-      map.appendChild(column('platform', 'Площадка'));
-      map.appendChild(column('app', 'Сервисы'));
-      map.appendChild(column('auth', 'Единый вход'));
+      map.appendChild(column('platform', ECOSYSTEM.tiers.platform));
+      map.appendChild(column('app', ECOSYSTEM.tiers.app));
+      map.appendChild(column('auth', ECOSYSTEM.tiers.auth));
       box.appendChild(map);
 
       wiring(map, nodes, ECOSYSTEM.edges);

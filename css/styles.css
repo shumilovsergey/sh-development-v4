@@ -232,7 +232,8 @@ a  { color: inherit; }
   padding: clamp(5.2rem, 12dvh, 7.5rem) 0 clamp(1.1rem, 4dvh, 2.5rem);
   display: flex; flex-direction: column;
   justify-content: safe center; align-items: center;
-  gap: clamp(1.4rem, 5.5dvh, 4.5rem);
+  --about-gap: clamp(1.4rem, 5.5dvh, 4.5rem);
+  gap: var(--about-gap);
 }
 
 .panel--stack {
@@ -333,24 +334,25 @@ a  { color: inherit; }
 }
 
 .stats {
-  width: 100%;
-  display: grid; gap: 1px;
+  position: relative;
+  width: min(100%, 40rem);
+  padding-top: var(--about-gap);
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background: var(--line-soft);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius); overflow: hidden;
-  box-shadow: var(--shadow);
+}
+.stats::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, rgba(255,255,255,.55) 30%, rgba(255,255,255,.55) 70%, transparent);
 }
 
 .stat {
-  background: var(--bg-soft);
-  padding: clamp(.65rem, 2.6dvh, 1.5rem) 1.1rem clamp(.7rem, 2.8dvh, 1.6rem);
+  padding-inline: 1rem;
   text-align: center;
-
   cursor: default;
-  transition: background .25s var(--ease);
 }
-.stat:hover { background: var(--bg-sunk); }
 
 .stat__value {
   display: block;
@@ -955,9 +957,14 @@ a  { color: inherit; }
 
 @media (min-width: 1001px) {
   .common { display: none; }
+  .card--common { display: none; }
 
   .catalog.is-open .scrim { opacity: 1; }
   .catalog.is-open .sheet { position: relative; z-index: 26; }
+}
+
+@media screen and (max-width: 1000px) {
+  .common { display: none; }
 }
 
 @media (max-width: 1000px) {
@@ -1030,8 +1037,8 @@ body.is-locked .navbar {
     display: inline-flex; gap: .4rem; color: #000;
   }
   .contact__label { opacity: 1; position: static; transform: none; color: #000; }
-  .stats { box-shadow: none; border-color: #ccc; background: #ccc; }
-  .stat { background: #fff; }
+  .panel--about { --about-gap: 2.4rem; }
+  .stats::before { background: linear-gradient(90deg, transparent, #bbb 30%, #bbb 70%, transparent); }
 
   .panel[hidden] { display: block !important; }
   .panel--stack,

@@ -1,7 +1,7 @@
 const EN = {
   meta: {
     title: 'sh',
-    description: 'Sergey Shumilov — DevOps / Software Engineer'
+    description: 'Sergey Shumilov - DevOps / Software Engineer'
   },
 
   lang: { label: 'EN', code: 'en' },
@@ -12,7 +12,7 @@ const EN = {
     close: 'Close',
     copyMail: 'Copy email address',
     copied: 'Address copied',
-    copyFail: 'Could not copy — address below'
+    copyFail: 'Could not copy - address below'
   },
 
   person: {
@@ -36,12 +36,9 @@ const EN = {
 
   about: {
     stats: {
-      servers: { label: 'servers', note: 'docker pve k8s' },
-      apps: { label: 'applications', note: 'waf pki ci-cd' },
-      sites: { label: 'sites', note: 'java go python' },
-      articles: { label: 'articles', note: 'documentation' },
-      tools: { label: 'repositories', note: 'codebase' },
-      postmortem: { label: 'postmortems', note: 'incident reviews' }
+      servers: { label: 'servers', note: 'pve docker k8s' },
+      apps: { label: 'applications', note: 'prod dev ci-cd' },
+      sites: { label: 'sites', note: 'java go python' }
     }
   },
 
@@ -53,8 +50,8 @@ const EN = {
         'Automation over manual operations',
         'Critical services are redundant, critical data is backed up',
         'The authentication chain matters more than password complexity',
-        'Zero trust — everything not explicitly required stays closed',
-        'Secrets are rotated — backups are tested',
+        'Zero trust - everything not explicitly required stays closed',
+        'Secrets are rotated - backups are tested',
         'Knowledge belongs in the knowledge base, not in one person\'s head'
       ]
     },
@@ -73,24 +70,22 @@ const EN = {
       },
 
       semaphore: {
-        title: 'Semaphore / Ansible',
+        title: 'Ansible',
         details: [
           'Made Ansible the way infrastructure is managed, not just another tool',
           'Separated admin permissions through Semaphore UI',
           'Continuously maintain the role and playbook library',
           'Added infrastructure versioning through Gitea',
-          'Changes became transparent — who changed what and when'
+          'Changes became transparent - who changed what and when'
         ]
       },
 
       isp: {
-        title: 'ISPmanager',
+        title: 'OpenVAS',
         details: [
-          '40 PHP/WordPress sites and two development teams',
-          'Fine-tuned caching',
-          'Many sites on one server — one slow site drags down the rest',
-          'Custom dashboard based on Prometheus metrics and Loki logs',
-          'Wrote a usage guide — downtime dropped several times over'
+          'PCI DSS certification',
+          'Vulnerability detection and remediation',
+          'Regular infrastructure security assessments'
         ]
       },
 
@@ -134,7 +129,7 @@ const EN = {
           'Deployment and support of a Python application',
           'Automated Windows network installation',
           'Ansible controller for managing the Windows fleet',
-          'Implemented two network installation scenarios — PXE and WinBoot',
+          'Implemented two network installation scenarios - PXE and WinBoot',
           'Automated answers to installation prompts',
           'Domain policy distribution',
           'Automated RuDesktop agent deployment for remote user support'
@@ -232,8 +227,8 @@ const EN = {
         title: 'Vault',
         details: [
           'Single point for secrets across pipelines, services and employees',
-          'Knowledge base integration — links to secrets instead of secrets themselves',
-          'Zero trust — access to secrets without exposing them in plain text',
+          'Knowledge base integration - links to secrets instead of secrets themselves',
+          'Zero trust - access to secrets without exposing them in plain text',
           'Centralized secret rotation'
         ]
       },
@@ -244,7 +239,7 @@ const EN = {
           'Deployment and support of a PHP application',
           'Introduced a site template system',
           'Set up multilingual support',
-          'Automated deployment — developers do not need server access',
+          'Automated deployment - developers do not need server access',
           'Separated Dev and Prod environments',
           'Set up failover to a standby instance with minimal downtime'
         ]
@@ -257,7 +252,7 @@ const EN = {
           'The entire environment should be documented',
           '.md keeps documentation simple and consistent',
           'Technical accuracy should not come at the cost of clarity',
-          'If a word can be removed without losing meaning — it is unnecessary'
+          'If a word can be removed without losing meaning - it is unnecessary'
         ]
       }
     }
@@ -267,6 +262,12 @@ const EN = {
 // ------- Projects -------
 
   projects: {
+    tiers: {
+      platform: 'Platform',
+      app:      'Services',
+      auth:     'Single sign-on'
+    },
+
     common: {
       title: 'How it works',
       lede: 'The pet projects grew out of work tasks: whatever was missing, I wrote. ' +
@@ -275,7 +276,7 @@ const EN = {
         'Go 1.23 with no frameworks, SQLite next to the binary.',
         'A Dockerfile and two compose files per project: dev and prod.',
         'Everything runs on my own homelab: shared test rig, monitoring and CI/CD.',
-        'One way in through auth-center — the session travels between apps.',
+        'One way in through auth-center - the session travels between apps.',
         'Menu as the entry point: it links the services and watches their health.',
         'Prometheus metrics wherever there is something worth watching.'
       ]
@@ -327,7 +328,7 @@ const EN = {
         'The tasks first-line support or the system administrators could not close.',
         'Writing decisions down so that next time a less experienced colleague closes the task.',
         'Bringing in new services and practices: less manual work, less human error.',
-        'A developer background — I can build a small, narrow tool when a finished product is missing one important detail.',
+        'A developer background - I can build a small, narrow tool when a finished product is missing one important detail.',
         'Most of the infrastructure is offline, hence the experience with packages, dependencies and building from source.'
       ]
     },
@@ -339,34 +340,34 @@ const EN = {
         span: 'now',
         role: 'Infrastructure Administration Engineer',
         company: 'Expoforum',
-        period: '— present'
+        period: '- present'
       },
 
       gamesport: {
         stage: 'Senior Administrator',
         mark: '2024',
-        span: '2024 — …',
+        span: '2024 - …',
         role: 'Senior System Administrator',
         company: 'GameSport · Unitpay',
-        period: 'December 2024 — '
+        period: 'December 2024 - '
       },
 
       honka: {
         stage: 'System Administrator',
         mark: '2022',
-        span: '2022 — 2024',
+        span: '2022 - 2024',
         role: 'System Administrator',
         company: 'Honka',
-        period: 'February 2022 — December 2024'
+        period: 'February 2022 - December 2024'
       },
 
       fitnesshouse: {
         stage: 'Support',
         mark: '2020',
-        span: '2020 — 2021',
+        span: '2020 - 2021',
         role: 'Technical Support Engineer',
         company: 'Fitness House',
-        period: 'May 2020 — July 2021'
+        period: 'May 2020 - July 2021'
       }
     }
   }
