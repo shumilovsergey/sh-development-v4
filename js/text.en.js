@@ -285,10 +285,42 @@ const EN = {
     items: {
       homelab:       { lines: ['testing', 'monitoring', 'CI / CD'] },
       menu:          { short: 'entry point' },
-      'nom-nom':     { short: 'food and recipes' },
-      'wget-bash':   { short: 'scripts at hand' },
-      qcode:         { short: 'QR codes' },
-      blur:          { short: 'audio player' },
+      'nom-nom': {
+        short: 'calories and weight',
+        summary: 'A calorie and weight tracker.',
+        details: [
+          'Daily progress stats',
+          'Calorie tracking per dish',
+          'AI food analysis from a photo'
+        ]
+      },
+      'wget-bash': {
+        short: 'scripts at hand',
+        summary: 'Storage for bash scripts.',
+        details: [
+          'One-click delivery to a server',
+          'Groups and fast search across scripts',
+          'Built-in log viewer'
+        ]
+      },
+      qcode: {
+        short: 'QR codes',
+        summary: 'An editor for creating beautiful QR codes.',
+        details: [
+          'AI integration built in',
+          'A huge range of parameters you can tweak',
+          'It\'s free!'
+        ]
+      },
+      blur: {
+        short: 'audio player',
+        summary: 'A player for long audio - books, podcasts and lectures.',
+        details: [
+          'Pick the playback time easily from the keyboard',
+          'Remembers where you stopped, even after the app is closed',
+          'Autoplay can be turned off so the player stops on its own'
+        ]
+      },
       'auth-center': { short: 'single sign-on' },
       'auth-proxy':  { short: 'bridge to Telegram' }
     }
