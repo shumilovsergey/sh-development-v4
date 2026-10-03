@@ -23,13 +23,13 @@ const ASSETS = {
     bitrix:      'static/icons/bitrix.svg',
     youtrack:    'static/icons/youtrack.svg',
 
-    homelab:     '',
+    'dev-infra':   '',
     menu:        'static/icons/menu.svg',
     'nom-nom':   'static/icons/nom-nom.svg',
     'wget-bash': 'static/icons/wget-bash.svg',
     qcode:       'static/icons/qcode.svg',
     blur:        'static/icons/blur.svg',
     'auth-center': 'static/icons/auth.svg',
-    'auth-proxy':  'static/icons/auth.svg'
+    'auth-miniapp': 'static/icons/auth.svg'
   }
 };

@@ -12,7 +12,8 @@ const EN = {
     close: 'Close',
     copyMail: 'Copy email address',
     copied: 'Address copied',
-    copyFail: 'Could not copy - address below'
+    copyFail: 'Could not copy - address below',
+    about: 'About'
   },
 
   person: {
@@ -275,7 +276,7 @@ const EN = {
       items: [
         'Go 1.23 with no frameworks, SQLite next to the binary.',
         'A Dockerfile and two compose files per project: dev and prod.',
-        'Everything runs on my own homelab: shared test rig, monitoring and CI/CD.',
+        'Everything runs on dev-infra: shared test rig, monitoring and CI/CD.',
         'One way in through auth-center - the session travels between apps.',
         'Menu as the entry point: it links the services and watches their health.',
         'Prometheus metrics wherever there is something worth watching.'
@@ -283,8 +284,24 @@ const EN = {
     },
 
     items: {
-      homelab:       { lines: ['testing', 'monitoring', 'CI / CD'] },
-      menu:          { short: 'entry point' },
+      'dev-infra': {
+        lines: ['testing', 'monitoring', 'CI / CD'],
+        summary: 'Isolated infrastructure for development and testing',
+        details: [
+          'CI/CD - build, testing and deploy',
+          'Hypervisor, network, backups',
+          'Internal services'
+        ]
+      },
+      menu: {
+        short: 'entry point',
+        summary: 'A single entry point to the ecosystem',
+        details: [
+          'SSO across apps',
+          'Information hub',
+          'Quick access to every service'
+        ]
+      },
       'nom-nom': {
         short: 'calories and weight',
         summary: 'A calorie and weight tracker.',
@@ -322,7 +339,7 @@ const EN = {
         ]
       },
       'auth-center': { short: 'single sign-on' },
-      'auth-proxy':  { short: 'bridge to Telegram' }
+      'auth-miniapp': { short: 'bridge to Telegram' }
     }
   },
 

@@ -64,7 +64,7 @@ const SCHEMA = {
     stack: ['Go 1.23', 'SQLite', 'Docker', 'SSO', 'Prometheus', 'self-hosted'],
 
     items: [
-      { id: 'homelab',     tier: 'platform',  icon: 'platform',
+      { id: 'dev-infra',    tier: 'platform', icon: 'platform',
         stack: ['Docker', 'Prometheus', 'Grafana', 'CI / CD'] },
 
       { id: 'menu',        tier: 'app', icon: 'app', stack: ['Go', 'SQLite', 'Docker'] },
@@ -74,15 +74,15 @@ const SCHEMA = {
       { id: 'blur',        tier: 'app', icon: 'blur', stack: ['Go', 'SQLite', 'Docker'] },
 
       { id: 'auth-center', tier: 'auth', icon: 'key', stack: ['Go', 'Docker', 'Telegram'] },
-      { id: 'auth-proxy',  tier: 'auth', icon: 'key', stack: ['Go', 'Docker', 'Telegram'] }
+      { id: 'auth-miniapp', tier: 'auth', icon: 'key', stack: ['Go', 'Docker', 'Telegram'] }
     ],
 
     edges: [
-      ['homelab', 'menu'],
-      ['homelab', 'nom-nom'],
-      ['homelab', 'wget-bash'],
-      ['homelab', 'qcode'],
-      ['homelab', 'blur'],
+      ['dev-infra', 'menu'],
+      ['dev-infra', 'nom-nom'],
+      ['dev-infra', 'wget-bash'],
+      ['dev-infra', 'qcode'],
+      ['dev-infra', 'blur'],
 
       ['menu',      'auth-center'],
       ['nom-nom',   'auth-center'],
@@ -90,7 +90,7 @@ const SCHEMA = {
       ['qcode',     'auth-center'],
       ['blur',      'auth-center'],
 
-      ['auth-center', 'auth-proxy', 'both']
+      ['auth-center', 'auth-miniapp', 'both']
     ]
   },
 
