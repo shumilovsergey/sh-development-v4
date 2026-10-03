@@ -2,8 +2,8 @@ const SCHEMA = {
   nav: [
     { id: 'about' },
     { id: 'stack' },
-    { id: 'projects' }
-    // { id: 'career' }
+    { id: 'projects' },
+    { id: 'career' }
   ],
 
   contacts: [
@@ -26,7 +26,7 @@ const SCHEMA = {
       { id: 'pki' },
       { id: 'youtrack' },
       { id: 'bitrix' },
-      { id: 'isp' },
+      { id: 'openvas' },
       { id: 'ptaf' },
       { id: 'thesis' },
       { id: 'gitea' },

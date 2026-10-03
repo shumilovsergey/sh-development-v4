@@ -80,7 +80,7 @@ const EN = {
         ]
       },
 
-      isp: {
+      openvas: {
         title: 'OpenVAS',
         details: [
           'PCI DSS certification',

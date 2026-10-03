@@ -80,7 +80,7 @@ const RU = {
         ]
       },
 
-      isp: {
+      openvas: {
         title: 'OpenVAS',
         details: [
           'PCI DSS сертификация',
