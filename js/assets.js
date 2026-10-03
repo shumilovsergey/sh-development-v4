@@ -23,7 +23,6 @@ const ASSETS = {
     bitrix:      'static/icons/bitrix.svg',
     youtrack:    'static/icons/youtrack.svg',
 
-    'dev-infra':   '',
     menu:        'static/icons/menu.svg',
     'nom-nom':   'static/icons/nom-nom.svg',
     'wget-bash': 'static/icons/wget-bash.svg',

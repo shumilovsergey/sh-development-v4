@@ -49,7 +49,7 @@
   var NAV = SCHEMA.nav.map(function (n) {
     var other = (lang === 'ru' ? EN : RU).nav || {};
     return {
-      id: n.id, ready: n.ready,
+      id: n.id,
       label: TEXT.nav[n.id],
       alt: other[n.id] || ''
     };
@@ -63,9 +63,7 @@
   };
 
   var ECOSYSTEM = {
-    stack: SCHEMA.projects.stack,
     tiers: TEXT.projects.tiers,
-    common: TEXT.projects.common,
     items: join(SCHEMA.projects.items, TEXT.projects.items),
     edges: SCHEMA.projects.edges
   };
@@ -177,7 +175,6 @@
   }
 
   var tabs = {};
-  var ready = NAV.filter(function (n) { return n.ready; });
 
   function renderNav() {
     var box = mount('nav');
@@ -200,18 +197,11 @@
       btn.id = 'tab-' + item.id;
       btn.dataset.tab = item.id;
       btn.setAttribute('role', 'tab');
-
-      if (!item.ready) {
-        btn.classList.add('navlink--soon');
-        btn.disabled = true;
-        btn.setAttribute('aria-disabled', 'true');
-      } else {
-        btn.setAttribute('aria-controls', 'panel-' + item.id);
-        btn.setAttribute('aria-selected', 'false');
-        btn.tabIndex = -1;
-        btn.addEventListener('click', function () { go(item.id); });
-        tabs[item.id] = btn;
-      }
+      btn.setAttribute('aria-controls', 'panel-' + item.id);
+      btn.setAttribute('aria-selected', 'false');
+      btn.tabIndex = -1;
+      btn.addEventListener('click', function () { go(item.id); });
+      tabs[item.id] = btn;
 
       li.appendChild(btn);
       box.appendChild(li);
@@ -222,7 +212,7 @@
 
   function onTabKey(e) {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    var ids = ready.map(function (n) { return n.id; });
+    var ids = NAV.map(function (n) { return n.id; });
     var i = ids.indexOf(current);
     if (i === -1) return;
     e.preventDefault();
@@ -240,7 +230,6 @@
       if (panel) panel.hidden = !on;
 
       var btn = tabs[item.id];
-      if (!btn) return;
       btn.setAttribute('aria-selected', String(on));
       btn.classList.toggle('is-current', on);
       btn.tabIndex = on ? 0 : -1;
@@ -259,8 +248,8 @@
 
   function fromHash() {
     var id = location.hash.replace(/^#/, '');
-    var ok = ready.some(function (n) { return n.id === id; });
-    return ok ? id : ready[0].id;
+    var ok = NAV.some(function (n) { return n.id === id; });
+    return ok ? id : NAV[0].id;
   }
 
   function initTabs() {
@@ -300,21 +289,8 @@
     setText('role', PERSON.role);
   }
 
-  function initials(name) {
-    return name.split(/\s+/).slice(0, 2).map(function (w) {
-      return w.charAt(0).toUpperCase();
-    }).join('');
-  }
-
   function renderPhoto() {
     var box = mount('photo');
-
-    if (!PERSON.photo) {
-      box.classList.add('photo--empty');
-      box.appendChild(el('span', 'photo__initials', initials(PERSON.name)));
-      return;
-    }
-
     var img = el('img', 'photo__img');
     img.src = PERSON.photo;
     img.alt = PERSON.name;
@@ -388,10 +364,6 @@
         node.type = 'button';
       }
 
-      if (c.action === 'print') {
-        node.addEventListener('click', function () { window.print(); });
-      }
-
       if (c.action === 'copy') {
         node.setAttribute('aria-label', TEXT.ui.copyMail);
         node.addEventListener('click', function () {
@@ -412,7 +384,7 @@
     });
   }
 
-  function countUp(node, target, suffix) {
+  function countUp(node, target) {
     var duration = 900;
     var start = null;
 
@@ -420,11 +392,11 @@
       if (start === null) start = now;
       var t = Math.min((now - start) / duration, 1);
       var eased = 1 - Math.pow(1 - t, 3);
-      node.textContent = Math.round(target * eased) + suffix;
+      node.textContent = Math.round(target * eased);
       if (t < 1) requestAnimationFrame(step);
     };
 
-    node.textContent = '0' + suffix;
+    node.textContent = '0';
     requestAnimationFrame(step);
   }
 
@@ -432,16 +404,14 @@
     var box = mount('stats');
 
     ABOUT.stats.forEach(function (s) {
-      var suffix = s.suffix || '';
       var li = el('li', 'stat');
 
-      var value = el('span', 'stat__value', s.value + suffix);
+      var value = el('span', 'stat__value', s.value);
       value.dataset.value = s.value;
-      value.dataset.suffix = suffix;
 
       li.appendChild(value);
       li.appendChild(el('span', 'stat__label', s.label));
-      if (s.note) li.appendChild(el('span', 'stat__note', s.note));
+      li.appendChild(el('span', 'stat__note', s.note));
       box.appendChild(li);
     });
 
@@ -451,7 +421,7 @@
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         io.unobserve(entry.target);
-        countUp(entry.target, Number(entry.target.dataset.value), entry.target.dataset.suffix);
+        countUp(entry.target, Number(entry.target.dataset.value));
       });
     }, { threshold: 0.6 });
 
@@ -464,7 +434,6 @@
 
     var d = disclosure('common', 'common-body');
     d.head.appendChild(headline('common', data.title));
-    d.head.appendChild(el('p', 'common__lede', data.lede));
 
     var ul = el('ul', 'common__list');
     data.items.forEach(function (t) { ul.appendChild(el('li', null, t)); });
@@ -519,7 +488,6 @@
     var sheetId = cfg.name + '-sheet';
     var titleId = cfg.name + '-sheet-title';
     var modal = cfg.dock === 'modal';
-    var overlay = modal || cfg.dock === 'overlay';
 
     var s = {
       root: null, inner: null, layout: null, title: null,
@@ -531,7 +499,7 @@
 
     function buildSheet() {
       var root = el('aside', 'sheet'
-        + (modal ? ' sheet--modal' : overlay ? ' sheet--overlay' : ''));
+        + (modal ? ' sheet--modal' : ''));
       root.id = sheetId;
       root.setAttribute('aria-labelledby', titleId);
       if (modal) {
@@ -573,7 +541,7 @@
     }
 
     function hidden() {
-      return overlay ? !s.open : (narrow.matches && !s.open);
+      return !s.open && (modal || narrow.matches);
     }
     function syncInert() { s.root.inert = hidden(); }
 
@@ -588,17 +556,16 @@
       // it only ever shows a picked entry. Repainting it on the way out swaps
       // the text under the closing fade, which reads as a blink, so leave the
       // last entry in place and let it fade out as itself.
-      if (s.open || !overlay) {
+      if (s.open || !modal) {
         s.title.textContent = '';
         if (cfg.badge && v.id) s.title.appendChild(cfg.badge(v));
-        else if (v.icon) s.title.appendChild(icon(v.icon));
         s.title.appendChild(document.createTextNode(v.title));
 
         s.body.textContent = '';
         s.body.appendChild(buildDetails(v));
       }
 
-      s.close.hidden = !overlay && !s.open;
+      s.close.hidden = !modal && !s.open;
 
       s.layout.classList.toggle('is-open', !!s.open);
       document.body.classList.toggle('is-locked', locks());
@@ -618,7 +585,7 @@
       var was = s.open;
       fill(viewOf(item));
 
-      if (!was && (overlay || narrow.matches)) s.close.focus();
+      if (!was && (modal || narrow.matches)) s.close.focus();
     }
 
     function reset(focusBack) {
@@ -626,7 +593,7 @@
         return n.dataset.id === s.open;
       })[0];
 
-      fill(cfg.fallback);
+      fill(cfg.fallback || {});
       if (focusBack && node) node.focus();
     }
 
@@ -664,7 +631,7 @@
       s.layout.appendChild(s.scrim);
       s.layout.appendChild(buildPrint());
 
-      fill(cfg.fallback);
+      fill(cfg.fallback || {});
 
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && s.open) reset(true);
@@ -697,14 +664,12 @@
     badge: function (v) { return plate('sheet__logo', v.id, v.icon); },
     fallback: {
       title: STACK.common.title,
-      summary: STACK.common.lede,
       details: STACK.common.items
     },
     surface: function (box, hook) {
       var common = {
         id: 'common', icon: 'principles',
         title: STACK.common.title,
-        summary: STACK.common.lede,
         details: STACK.common.items
       };
       var lead = el('button', 'card card--common');
@@ -873,12 +838,6 @@
     dock: 'modal',
     badge: function (v) { return plate('sheet__app', v.id, v.icon); },
     items: ECOSYSTEM.items,
-    fallback: {
-      title: ECOSYSTEM.common.title,
-      summary: ECOSYSTEM.common.lede,
-      details: ECOSYSTEM.common.items,
-      stack: ECOSYSTEM.stack
-    },
     surface: function (box, hook) {
       var map = el('div', 'map');
       var nodes = {};

@@ -46,7 +46,6 @@ const EN = {
   stack: {
     common: {
       title: 'Work Principles',
-      lede: '',
       items: [
         'Automation over manual operations',
         'Critical services are redundant, critical data is backed up',
@@ -269,23 +268,8 @@ const EN = {
       auth:     'Single sign-on'
     },
 
-    common: {
-      title: 'How it works',
-      lede: 'The pet projects grew out of work tasks: whatever was missing, I wrote. ' +
-        'They are built to one pattern, so a new service goes up in an evening.',
-      items: [
-        'Go 1.23 with no frameworks, SQLite next to the binary.',
-        'A Dockerfile and two compose files per project: dev and prod.',
-        'Everything runs on dev-infra: shared test rig, monitoring and CI/CD.',
-        'One way in through auth-center - the session travels between apps.',
-        'Menu as the entry point: it links the services and watches their health.',
-        'Prometheus metrics wherever there is something worth watching.'
-      ]
-    },
-
     items: {
       'dev-infra': {
-        lines: ['testing', 'monitoring', 'CI / CD'],
         summary: 'Isolated infrastructure for development and testing',
         details: [
           'CI/CD - build, testing and deploy',
@@ -294,7 +278,6 @@ const EN = {
         ]
       },
       menu: {
-        short: 'entry point',
         summary: 'A single entry point to the ecosystem',
         details: [
           'SSO across apps',
@@ -303,7 +286,6 @@ const EN = {
         ]
       },
       'nom-nom': {
-        short: 'calories and weight',
         summary: 'A calorie and weight tracker.',
         details: [
           'Daily progress stats',
@@ -312,7 +294,6 @@ const EN = {
         ]
       },
       'wget-bash': {
-        short: 'scripts at hand',
         summary: 'Storage for bash scripts.',
         details: [
           'One-click delivery to a server',
@@ -321,7 +302,6 @@ const EN = {
         ]
       },
       qcode: {
-        short: 'QR codes',
         summary: 'An editor for creating beautiful QR codes.',
         details: [
           'AI integration built in',
@@ -330,16 +310,13 @@ const EN = {
         ]
       },
       blur: {
-        short: 'audio player',
         summary: 'A player for long audio - books, podcasts and lectures.',
         details: [
           'Pick the playback time easily from the keyboard',
           'Remembers where you stopped, even after the app is closed',
           'Autoplay can be turned off so the player stops on its own'
         ]
-      },
-      'auth-center': { short: 'single sign-on' },
-      'auth-miniapp': { short: 'bridge to Telegram' }
+      }
     }
   },
 

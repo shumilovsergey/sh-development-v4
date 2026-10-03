@@ -1,9 +1,9 @@
 const SCHEMA = {
   nav: [
-    { id: 'about',    ready: true },
-    { id: 'stack',    ready: true },
-    { id: 'projects', ready: true }
-    // { id: 'career',   ready: true }
+    { id: 'about' },
+    { id: 'stack' },
+    { id: 'projects' }
+    // { id: 'career' }
   ],
 
   contacts: [
@@ -21,60 +21,39 @@ const SCHEMA = {
 
   stack: {
     items: [
-      { id: 'monitoring',  icon: 'monitoring',
-        stack: ['Grafana', 'Thanos', 'Prometheus', 'Loki', 'Ansible'] },
-      { id: 'semaphore',   icon: 'semaphore',
-        stack: ['Ansible', 'Semaphore UI'] },
-      { id: 'pki',         icon: 'pki',
-        stack: ['step-ca', 'SSH-сертификаты', '2FA'] },
-      { id: 'youtrack',    icon: 'youtrack',
-        stack: ['YouTrack', 'Knowledge Base'] },
-      { id: 'bitrix',      icon: 'bitrix',
-        stack: ['Bitrix24'] },
-      { id: 'isp',         icon: 'isp',
-        stack: ['PHP', 'MySQL', 'WordPress', 'Prometheus', 'Loki'] },
-      { id: 'ptaf',        icon: 'ptaf',
-        stack: ['Kubernetes', 'IMAP', 'Telegram Bot API'] },
-      { id: 'thesis',      icon: 'thesis',
-        stack: ['Java (CUBA)', 'MySQL', 'Elasticsearch', 'Kerberos'] },
-      { id: 'gitea',       icon: 'gitea',
-        stack: ['Gitea Workflows', 'Go', 'Python'] },
-      { id: 'smallstep',   icon: 'smallstep',
-        stack: ['PKI', 'CRL'] },
-      { id: 'multifactor', icon: 'multifactor',
-        stack: ['TOTP', 'LDAP-адаптеры'] },
-      { id: 'stormwall',   icon: 'stormwall',
-        stack: ['SaaS', 'firewall', 'Prometheus exporter'] },
-      { id: 'rudesktop',   icon: 'rudesktop',
-        stack: ['PXE', 'DHCP', 'TFTP', 'HTTP'] },
-      { id: 'keycloak',    icon: 'key',
-        stack: ['Keycloak', 'OIDC', 'SAML', 'LDAP'] },
-      { id: 'express',     icon: 'express',
-        stack: ['self-hosted мессенджер', 'Smart Apps', 'боты'] },
-      { id: 'vault',       icon: 'vault',
-        stack: ['secret manager'] },
-      { id: 'usergate',    icon: 'usergate',
-        stack: ['firewall'] },
-      { id: 'r7',          icon: 'r7',
-        stack: ['Java', 'PostgreSQL', 'repmgr', 'LDAPS'] }
+      { id: 'monitoring' },
+      { id: 'semaphore' },
+      { id: 'pki' },
+      { id: 'youtrack' },
+      { id: 'bitrix' },
+      { id: 'isp' },
+      { id: 'ptaf' },
+      { id: 'thesis' },
+      { id: 'gitea' },
+      { id: 'smallstep' },
+      { id: 'multifactor' },
+      { id: 'stormwall' },
+      { id: 'rudesktop' },
+      { id: 'keycloak' },
+      { id: 'express' },
+      { id: 'vault' },
+      { id: 'usergate' },
+      { id: 'r7' }
     ]
   },
 
   projects: {
-    stack: ['Go 1.23', 'SQLite', 'Docker', 'SSO', 'Prometheus', 'self-hosted'],
-
     items: [
-      { id: 'dev-infra',    tier: 'platform', icon: 'platform',
-        stack: ['Docker', 'Prometheus', 'Grafana', 'CI / CD'] },
+      { id: 'dev-infra',    tier: 'platform', icon: 'platform' },
 
-      { id: 'menu',        tier: 'app', icon: 'app', stack: ['Go', 'SQLite', 'Docker'] },
-      { id: 'nom-nom',     tier: 'app', icon: 'app', stack: ['Go', 'SQLite', 'Docker'] },
-      { id: 'wget-bash',   tier: 'app', icon: 'app', stack: ['Go', 'Bash', 'Docker'] },
-      { id: 'qcode',       tier: 'app', icon: 'app', stack: ['Go', 'SQLite', 'Docker'] },
-      { id: 'blur',        tier: 'app', icon: 'blur', stack: ['Go', 'SQLite', 'Docker'] },
+      { id: 'menu',         tier: 'app' },
+      { id: 'nom-nom',      tier: 'app' },
+      { id: 'wget-bash',    tier: 'app' },
+      { id: 'qcode',        tier: 'app' },
+      { id: 'blur',         tier: 'app' },
 
-      { id: 'auth-center', tier: 'auth', icon: 'key', stack: ['Go', 'Docker', 'Telegram'] },
-      { id: 'auth-miniapp', tier: 'auth', icon: 'key', stack: ['Go', 'Docker', 'Telegram'] }
+      { id: 'auth-center',  tier: 'auth' },
+      { id: 'auth-miniapp', tier: 'auth' }
     ],
 
     edges: [
