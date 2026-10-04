@@ -25,7 +25,7 @@ const EN = {
     telegram: 'Telegram',
     mail: 'Email',
     github: 'GitHub',
-    cv: 'CV in PDF'
+    cv: 'CV (PDF)'
   },
 
   nav: {
@@ -65,7 +65,7 @@ const EN = {
           'Exporter deployment via Ansible',
           'A system of dynamic dashboards covering the whole Linux + Windows fleet',
           'Alerting without the noise of false positives',
-          'Clean and readable notifications in messengers'
+          'Clean, readable notifications to messengers'
         ]
       },
 
@@ -73,10 +73,10 @@ const EN = {
         title: 'Ansible',
         details: [
           'Made Ansible the way infrastructure is managed, not just another tool',
-          'Separated admin permissions through Semaphore UI',
-          'Continuously maintain the role and playbook library',
-          'Added infrastructure versioning through Gitea',
-          'Changes became transparent - who changed what and when'
+          'Role-based admin access through Semaphore UI',
+          'Keep the library of roles and playbooks up to date',
+          'Put the infrastructure under version control in Gitea',
+          'Every change is traceable - who changed what, and when'
         ]
       },
 
@@ -92,10 +92,10 @@ const EN = {
       ptaf: {
         title: 'PTAF',
         details: [
-          'Deployment and support of an application running in Kubernetes',
+          'Deployment and support of the application in Kubernetes',
           'Traffic analysis and attack protection',
           'Network routing configuration',
-          'Built an exporter for metrics, alerts and visualizations'
+          'Built an exporter for metrics, alerts and dashboards'
         ]
       },
 
@@ -103,12 +103,12 @@ const EN = {
         title: 'Thesis DMS',
         details: [
           'Deployment and support of a Java application',
-          'Elasticsearch integration improved search performance',
+          'Elasticsearch integration made search faster',
           'R7 Office integration for collaborative document editing',
           'Kerberos and SSO integration for authentication',
-          'Built an exporter for task scheduler monitoring',
-          'Built a utility to automatically capture memory dumps on application failure',
-          'Introduced hard-link backups, which cut storage usage'
+          'Built an exporter to monitor task schedulers',
+          'Built a tool that captures a memory dump automatically when the application crashes',
+          'Introduced hard-link backups, cutting storage usage'
         ]
       },
 
@@ -119,7 +119,7 @@ const EN = {
           'Distributed the application across 7 servers for fault tolerance',
           'Migrated the database to a PostgreSQL cluster with automatic leader failover',
           'Built an LDAPS synchronization module with nested group permission inheritance',
-          'Rehearsed recovery scenarios for deleted documents'
+          'Tested recovery procedures for deleted documents'
         ]
       },
 
@@ -130,8 +130,8 @@ const EN = {
           'Automated Windows network installation',
           'Ansible controller for managing the Windows fleet',
           'Implemented two network installation scenarios - PXE and WinBoot',
-          'Automated answers to installation prompts',
-          'Domain policy distribution',
+          'Unattended answers to installer prompts',
+          'Group Policy rollout',
           'Automated RuDesktop agent deployment for remote user support'
         ]
       },
@@ -151,12 +151,12 @@ const EN = {
       pki: {
         title: 'PKI',
         details: [
-          'Offline Root Certificate Authority',
-          'Intermediate Certificate Authorities',
-          'Issuing Certificate Authorities',
-          'Certificate Revocation List publication',
+          'Offline root certificate authority',
+          'Intermediate certificate authorities',
+          'Issuing certificate authorities',
+          'Certificate revocation list (CRL) publishing',
           'Automatic issuance of short-lived client certificates',
-          'Repository of templates and configurations for all PKI entities'
+          'A repository of templates and configs for all of the above'
         ]
       },
 
@@ -165,9 +165,9 @@ const EN = {
         details: [
           'External perimeter firewall support',
           'Routing configuration and DNS management',
-          'External traffic balancing between services',
-          'DDoS attack protection',
-          'Built an exporter to monitor traffic and RPS across different network segments'
+          'Load balancing of external traffic across services',
+          'DDoS mitigation',
+          'Built an exporter to monitor traffic and RPS across network segments'
         ]
       },
 
@@ -187,7 +187,7 @@ const EN = {
           'Centralized 2FA for all internal services',
           'Adapter integration and support',
           'Real client IP tracking',
-          'Different authentication flows for the internal and external perimeter'
+          'Separate authentication flows for the internal and external perimeters'
         ]
       },
 
@@ -195,9 +195,9 @@ const EN = {
         title: 'Express',
         details: [
           'Deployment and support of a Docker Compose application',
-          'Messenger support for 700 daily users',
+          'Running a messenger with 700 daily users',
           'MS Outlook integration',
-          'Video conference scheduling through the calendar',
+          'Scheduling video calls from the calendar',
           'Built bots for alerts and service notifications'
         ]
       },
@@ -208,7 +208,7 @@ const EN = {
           'Automated application deployment through Gitea Actions',
           'Version control for Ansible and service configurations',
           'Repositories for internal projects',
-          'A culture of short and meaningful README.md files'
+          'A culture of short, meaningful READMEs'
         ]
       },
 
@@ -226,8 +226,8 @@ const EN = {
       vault: {
         title: 'Vault',
         details: [
-          'Single point for secrets across pipelines, services and employees',
-          'Knowledge base integration - links to secrets instead of secrets themselves',
+          'A single source of secrets for pipelines, services and people',
+          'Knowledge base integration - it stores links to secrets, not the secrets',
           'Zero trust - access to secrets without exposing them in plain text',
           'Centralized secret rotation'
         ]
@@ -239,7 +239,7 @@ const EN = {
           'Deployment and support of a PHP application',
           'Introduced a site template system',
           'Set up multilingual support',
-          'Automated deployment - developers do not need server access',
+          'Automated deployment - developers don\'t need server access',
           'Separated Dev and Prod environments',
           'Set up failover to a standby instance with minimal downtime'
         ]
@@ -250,9 +250,9 @@ const EN = {
         details: [
           'Documentation is as much a part of infrastructure as code and configs',
           'The entire environment should be documented',
-          '.md keeps documentation simple and consistent',
+          'Markdown keeps documentation simple and consistent',
           'Technical accuracy should not come at the cost of clarity',
-          'If a word can be removed without losing meaning - it is unnecessary'
+          'If a word can go without losing meaning, it should go'
         ]
       }
     }
@@ -272,7 +272,7 @@ const EN = {
       'dev-infra': {
         summary: 'Isolated infrastructure for development and testing',
         details: [
-          'CI/CD - build, testing and deploy',
+          'CI/CD - build, test, deploy',
           'Hypervisor, network, backups',
           'Internal services'
         ]
@@ -286,7 +286,7 @@ const EN = {
         ]
       },
       'nom-nom': {
-        summary: 'A calorie and weight tracker.',
+        summary: 'A calorie and weight tracker',
         details: [
           'Daily progress stats',
           'Calorie tracking per dish',
@@ -294,7 +294,7 @@ const EN = {
         ]
       },
       'wget-bash': {
-        summary: 'Storage for bash scripts.',
+        summary: 'A home for your bash scripts',
         details: [
           'One-click delivery to a server',
           'Groups and fast search across scripts',
@@ -302,20 +302,33 @@ const EN = {
         ]
       },
       qcode: {
-        summary: 'An editor for creating beautiful QR codes.',
+        summary: 'An editor for beautiful QR codes',
         details: [
-          'AI integration built in',
-          'A huge range of parameters you can tweak',
+          'Built-in AI',
+          'Plenty of settings to tweak',
           'It\'s free!'
         ]
       },
       blur: {
-        summary: 'A player for long audio - books, podcasts and lectures.',
+        summary: 'A player for long-form audio - audiobooks, podcasts and lectures',
         details: [
-          'Pick the playback time easily from the keyboard',
-          'Remembers where you stopped, even after the app is closed',
-          'Autoplay can be turned off so the player stops on its own'
+          'Precise seeking - type in the exact time',
+          'Remembers where you left off',
+          'Autoplay can be turned off'
         ]
+      },
+      'auth-center': {
+        summary: 'Central authentication service',
+        details: [
+          'Stateless - simple by design',
+          'Verifies both people and applications',
+          'Zero trust between services',
+          'Sign-in with Google, Telegram and Solana'
+        ]
+      },
+      'auth-miniapp': {
+        summary: 'Hands the user\'s Telegram session over to auth-center',
+        details: ['Seamless sign-in']
       }
     }
   },
