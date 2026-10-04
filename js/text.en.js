@@ -321,67 +321,26 @@ const EN = {
   },
 
   career: {
-    title: 'My path in engineering',
-    lede:
-      'Over these years the role shifted from keeping systems running ' +
-      'to designing them.',
-
-    traits: [
-      {
-        title: 'I take on the tangled ones',
-        text: 'The tasks first-line support or the system administrators could not close.'
-      },
-      {
-        title: 'I automate the repeats',
-        text: 'If something has to be done by hand a second time, I start thinking about a tool.'
-      },
-      {
-        title: 'I leave the system clearer',
-        text: 'Documentation, reproducible configs and procedures a less experienced colleague can follow.'
-      },
-      {
-        title: 'I connect the teams',
-        text: 'Development, information security and the network administrators.'
-      }
-    ],
-
-    common: {
-      title: 'My role on the team',
-      lede: 'Described not as a list of duties but as what I was actually useful for, ' +
-        'it looked like this.',
-      items: [
-        'The link between developers, information security and network administrators.',
-        'The tasks first-line support or the system administrators could not close.',
-        'Writing decisions down so that next time a less experienced colleague closes the task.',
-        'Bringing in new services and practices: less manual work, less human error.',
-        'A developer background - I can build a small, narrow tool when a finished product is missing one important detail.',
-        'Most of the infrastructure is offline, hence the experience with packages, dependencies and building from source.'
-      ]
-    },
-
     items: {
       expoforum: {
-        stage: 'DevOps / Infrastructure',
+        stage: 'DevOps',
         mark: 'now',
-        span: 'now',
         role: 'Infrastructure Administration Engineer',
         company: 'Expoforum',
         period: '- present'
       },
 
       gamesport: {
-        stage: 'Senior Administrator',
+        stage: 'Senior System\nAdministrator',
         mark: '2024',
-        span: '2024 - …',
         role: 'Senior System Administrator',
-        company: 'GameSport · Unitpay',
+        company: 'Unitpay',
         period: 'December 2024 - '
       },
 
       honka: {
         stage: 'System Administrator',
         mark: '2022',
-        span: '2022 - 2024',
         role: 'System Administrator',
         company: 'Honka',
         period: 'February 2022 - December 2024'
@@ -390,7 +349,6 @@ const EN = {
       fitnesshouse: {
         stage: 'Support',
         mark: '2020',
-        span: '2020 - 2021',
         role: 'Technical Support Engineer',
         company: 'Fitness House',
         period: 'May 2020 - July 2021'

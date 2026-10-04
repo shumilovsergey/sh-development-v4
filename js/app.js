@@ -69,10 +69,6 @@
   };
 
   var CAREER = {
-    title: TEXT.career.title,
-    lede: TEXT.career.lede,
-    traits: TEXT.career.traits,
-    common: TEXT.career.common,
     items: join(SCHEMA.career.items, TEXT.career.items)
   };
 
@@ -488,11 +484,12 @@
     var sheetId = cfg.name + '-sheet';
     var titleId = cfg.name + '-sheet-title';
     var modal = cfg.dock === 'modal';
+    var bare = !cfg.dock;
 
     var s = {
       root: null, inner: null, layout: null, title: null,
       body: null, close: null, scrim: null,
-      open: null
+      open: null, home: false
     };
 
     var targets = [];
@@ -543,29 +540,41 @@
     function hidden() {
       return !s.open && (modal || narrow.matches);
     }
-    function syncInert() { s.root.inert = hidden(); }
+    function syncInert() { if (!bare) s.root.inert = hidden(); }
+    function syncClose() {
+      if (!bare) s.close.hidden = !modal && (!away() || !!homeId());
+    }
 
-    function locks() { return !!s.open && (modal || narrow.matches); }
+    function locks() { return !bare && !!s.open && (modal || narrow.matches); }
 
     function viewOf(item) { return cfg.view ? cfg.view(item) : item; }
 
+    function homeId() {
+      return cfg.home && (bare || !narrow.matches) ? cfg.home.id : null;
+    }
+    function rest() {
+      return homeId() ? viewOf(cfg.home) : (cfg.fallback || {});
+    }
+    function away() { return !!s.open && !s.home; }
+
     function fill(v) {
       s.open = v.id || null;
+      s.home = !!s.open && s.open === homeId();
 
       // a panel that lives over the page is never read holding the fallback -
       // it only ever shows a picked entry. Repainting it on the way out swaps
       // the text under the closing fade, which reads as a blink, so leave the
       // last entry in place and let it fade out as itself.
-      if (s.open || !modal) {
+      if (!bare && (s.open || !modal)) {
         s.title.textContent = '';
         if (cfg.badge && v.id) s.title.appendChild(cfg.badge(v));
-        s.title.appendChild(document.createTextNode(v.title));
+        s.title.appendChild(document.createTextNode(v.title || ''));
 
         s.body.textContent = '';
         s.body.appendChild(buildDetails(v));
       }
 
-      s.close.hidden = !modal && !s.open;
+      syncClose();
 
       s.layout.classList.toggle('is-open', !!s.open);
       document.body.classList.toggle('is-locked', locks());
@@ -585,15 +594,16 @@
       var was = s.open;
       fill(viewOf(item));
 
-      if (!was && (modal || narrow.matches)) s.close.focus();
+      if (!bare && !was && (modal || narrow.matches)) s.close.focus();
     }
 
     function reset(focusBack) {
+      if (!away()) return;
       var node = s.open && targets.filter(function (n) {
         return n.dataset.id === s.open;
       })[0];
 
-      fill(cfg.fallback || {});
+      fill(rest());
       if (focusBack && node) node.focus();
     }
 
@@ -601,7 +611,7 @@
       node.dataset.id = item.id;
       if (node.tagName === 'BUTTON') node.type = 'button';
       node.setAttribute('aria-pressed', 'false');
-      node.setAttribute('aria-controls', sheetId);
+      if (!bare) node.setAttribute('aria-controls', sheetId);
       node.addEventListener('click', function () {
         if (s.open === item.id) reset(false);
         else open(item);
@@ -626,25 +636,29 @@
       cfg.surface(mount(cfg.name), hook);
 
       s.layout = mount(cfg.name + '-layout');
-      buildSheet();
-      s.layout.appendChild(s.root);
-      s.layout.appendChild(s.scrim);
+      if (!bare) {
+        buildSheet();
+        s.layout.appendChild(s.root);
+        s.layout.appendChild(s.scrim);
+      }
       s.layout.appendChild(buildPrint());
 
-      fill(cfg.fallback || {});
+      fill(rest());
 
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && s.open) reset(true);
+        if (e.key === 'Escape' && away()) reset(true);
       });
 
       document.addEventListener('click', function (e) {
-        if (!s.open) return;
-        if (s.inner.contains(e.target)) return;
+        if (!away() || homeId()) return;
+        if (s.inner && s.inner.contains(e.target)) return;
         if (targets.some(function (n) { return n.contains(e.target); })) return;
         reset(false);
       });
 
       var onBreak = function () {
+        if (!away()) fill(rest());
+        syncClose();
         document.body.classList.toggle('is-locked', locks());
         syncInert();
       };
@@ -876,13 +890,9 @@
 
   var careerBoard = board({
     name: 'career',
-    dock: 'column',
+    // dock: 'column',
     items: CAREER.items,
-    fallback: {
-      title: CAREER.common.title,
-      summary: CAREER.common.lede,
-      details: CAREER.common.items
-    },
+    home: CAREER.items[0],
     view: function (r) {
       return {
         id: r.id, title: r.role, meta: r.period, links: r.links,
@@ -890,9 +900,6 @@
       };
     },
     surface: function (box, hook) {
-      box.appendChild(el('h2', 'lead__title', CAREER.title));
-      box.appendChild(el('p', 'lead__text', CAREER.lede));
-
       var track = el('ol', 'track');
       var list = el('ul', 'roster__list');
 
@@ -908,10 +915,11 @@
         var step = el('li', 'track__item');
         step.appendChild(hook(pin, r));
         track.appendChild(step);
+      });
 
+      CAREER.items.forEach(function (r) {
         var slot = el('button', 'slot');
-        slot.appendChild(el('span', 'slot__span', r.span));
-        slot.appendChild(el('span', 'slot__role', r.role));
+        slot.appendChild(el('span', 'slot__name', r.company));
 
         var row = el('li', 'roster__item');
         row.appendChild(hook(slot, r));
@@ -920,15 +928,6 @@
 
       box.appendChild(track);
       mount('career-roster').appendChild(list);
-
-      var traits = el('ul', 'traits');
-      CAREER.traits.forEach(function (t) {
-        var li = el('li', 'trait');
-        li.appendChild(el('h3', 'trait__title', t.title));
-        li.appendChild(el('p', 'trait__text', t.text));
-        traits.appendChild(li);
-      });
-      mount('career-traits').appendChild(traits);
     }
   });
 
