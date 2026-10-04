@@ -49,8 +49,8 @@ const SCHEMA = {
       { id: 'menu',         tier: 'app' },
       { id: 'nom-nom',      tier: 'app' },
       { id: 'wget-bash',    tier: 'app' },
-      { id: 'qcode',        tier: 'app' },
       { id: 'blur',         tier: 'app' },
+      { id: 'qcode',        tier: 'app' },
 
       { id: 'auth-center',  tier: 'auth' },
       { id: 'auth-miniapp', tier: 'auth' }
@@ -60,14 +60,14 @@ const SCHEMA = {
       ['dev-infra', 'menu'],
       ['dev-infra', 'nom-nom'],
       ['dev-infra', 'wget-bash'],
-      ['dev-infra', 'qcode'],
       ['dev-infra', 'blur'],
+      ['dev-infra', 'qcode'],
 
       ['menu',      'auth-center'],
       ['nom-nom',   'auth-center'],
       ['wget-bash', 'auth-center'],
-      ['qcode',     'auth-center'],
       ['blur',      'auth-center'],
+      ['qcode',     'auth-center'],
 
       ['auth-center', 'auth-miniapp', 'both']
     ]

@@ -301,20 +301,20 @@ const EN = {
           'Built-in log viewer'
         ]
       },
-      qcode: {
-        summary: 'An editor for beautiful QR codes',
-        details: [
-          'Built-in AI',
-          'Plenty of settings to tweak',
-          'It\'s free!'
-        ]
-      },
       blur: {
         summary: 'A player for long-form audio - audiobooks, podcasts and lectures',
         details: [
           'Precise seeking - type in the exact time',
           'Remembers where you left off',
           'Autoplay can be turned off'
+        ]
+      },
+      qcode: {
+        summary: 'An editor for beautiful QR codes',
+        details: [
+          'Built-in AI',
+          'Plenty of settings to tweak',
+          'It\'s free!'
         ]
       },
       'auth-center': {

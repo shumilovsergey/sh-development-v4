@@ -563,6 +563,7 @@ a  { color: inherit; }
   }
   .wires { display: none; }
   .map__col--auth { gap: 1rem; }
+  .map__col--platform { order: 1; }
 
   .map__col::before {
     content: attr(data-label);
