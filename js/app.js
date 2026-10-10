@@ -890,13 +890,13 @@
 
   var careerBoard = board({
     name: 'career',
-    // dock: 'column',
+    dock: 'column',
     items: CAREER.items,
     home: CAREER.items[0],
     view: function (r) {
       return {
-        id: r.id, title: r.role, meta: r.period, links: r.links,
-        summary: r.summary, groups: r.groups, note: r.note, stack: r.stack
+        id: r.id, title: r.role,
+        summary: r.summary, details: r.details
       };
     },
     surface: function (box, hook) {

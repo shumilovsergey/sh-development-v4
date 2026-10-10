@@ -340,7 +340,11 @@ const EN = {
         mark: 'now',
         role: 'Infrastructure Administration Engineer',
         company: 'Expoforum',
-        period: '- present'
+        period: '- present',
+        details: [
+          'Running the Linux infrastructure',
+          'Deploying and supporting applications'
+        ]
       },
 
       gamesport: {
@@ -348,7 +352,16 @@ const EN = {
         mark: '2024',
         role: 'Senior System Administrator',
         company: 'Unitpay',
-        period: 'December 2024 - '
+        period: 'December 2024 - September 2025',
+        summary: 'Fintech: Payment Platform and Banking Application',
+        details: [
+          'Led a team of system administrators',
+          'Proxmox cluster: 14 nodes, 100+ VMs',
+          'Infrastructure automation: Ansible, Terraform',
+          'Cloud infrastructure: Yandex Cloud, AWS, Hetzner, Selectel',
+          'Access management: FreeIPA, Bastion Hosts, VPN',
+          'Monitoring: Prometheus, Grafana; CI/CD: GitLab'
+        ]
       },
 
       honka: {
@@ -356,7 +369,14 @@ const EN = {
         mark: '2022',
         role: 'System Administrator',
         company: 'Honka',
-        period: 'February 2022 - December 2024'
+        period: 'February 2022 - December 2024',
+        summary: 'Company specializing in country house design',
+        details: [
+          'Managed IT infrastructure for 80 workstations',
+          'Server infrastructure: Windows Server, Active Directory, 1C',
+          'Network infrastructure: MikroTik, VLAN, NAT, CAPsMAN',
+          'Video surveillance and access control: Hikvision, Bolid, Timex'
+        ]
       },
 
       fitnesshouse: {
@@ -364,7 +384,14 @@ const EN = {
         mark: '2020',
         role: 'Technical Support Engineer',
         company: 'Fitness House',
-        period: 'May 2020 - July 2021'
+        period: 'May 2020 - July 2021',
+        summary: 'Nationwide Fitness Club Chain',
+        details: [
+          'Technical support for distributed IT infrastructure',
+          'End-to-end IT infrastructure deployment for new clubs',
+          'Network infrastructure: DHCP, DNS, switches',
+          'Access control systems and turnstiles: Bolid, PERCo'
+        ]
       }
     }
   }

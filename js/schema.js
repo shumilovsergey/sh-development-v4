@@ -75,25 +75,19 @@ const SCHEMA = {
 
   career: {
     items: [
-      { id: 'expoforum',
-        stack: ['Linux', 'Proxmox', 'Bash', 'Python', 'Go', 'Java'] },
+      { id: 'expoforum' },
 
       { id: 'gamesport',
         links: [
           { name: 'GameSport', href: 'https://gamesport.com/ru' },
           { name: 'Unitpay',   href: 'https://unitpay.ru/' }
-        ],
-        stack: ['Proxmox', 'FreeIPA', 'Ansible', 'Terraform', 'Docker',
-                'GitLab CI', 'Prometheus', 'Grafana'] },
+        ] },
 
       { id: 'honka',
-        links: [{ name: 'Honka', href: 'https://honka.ru/' }],
-        stack: ['Windows Server', 'Active Directory', 'MikroTik', '1С',
-                'Hikvision', 'Bolid'] },
+        links: [{ name: 'Honka', href: 'https://honka.ru/' }] },
 
       { id: 'fitnesshouse',
-        links: [{ name: 'Fitness House', href: 'https://www.fitnesshouse.ru/' }],
-        stack: ['Windows', 'DHCP', 'DNS', 'СКС', 'Bolid', 'PERCo'] }
+        links: [{ name: 'Fitness House', href: 'https://www.fitnesshouse.ru/' }] }
     ]
   }
 };
