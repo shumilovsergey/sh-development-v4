@@ -2,8 +2,8 @@
   'use strict';
 
   var EDITIONS = {
-    COM: { lang: 'en' },
-    RU:  { lang: 'ru' }
+    COM: { lang: 'en', apps: 'com' },
+    RU:  { lang: 'ru', apps: 'ru', abroad: 'com' }
   };
 
   window.SITE = EDITIONS[window.EDITION] || EDITIONS.COM;

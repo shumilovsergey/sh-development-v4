@@ -3,13 +3,14 @@
 
   var LANGS = { ru: RU, en: EN };
   var LANG_KEY = 'sh-lang';
+  var SITE = window.SITE || {};
 
   var lang = (function () {
     var saved = null;
-    try { saved = localStorage.getItem(LANG_KEY); } catch (e) { saved = null; }
+    try { saved = sessionStorage.getItem(LANG_KEY); } catch (e) { saved = null; }
     if (LANGS[saved]) return saved;
 
-    var set = (window.SITE || {}).lang;
+    var set = SITE.lang;
     return LANGS[set] ? set : 'en';
   })();
 
@@ -64,7 +65,10 @@
 
   var ECOSYSTEM = {
     tiers: TEXT.projects.tiers,
-    items: join(SCHEMA.projects.items, TEXT.projects.items),
+    items: join(SCHEMA.projects.items, TEXT.projects.items).map(function (w) {
+      w.urls = SCHEMA.projects.urls[w.id];
+      return w;
+    }),
     edges: SCHEMA.projects.edges
   };
 
@@ -261,7 +265,7 @@
     btn.setAttribute('aria-label', TEXT.ui.switchLang);
 
     btn.addEventListener('click', function () {
-      try { localStorage.setItem(LANG_KEY, lang === 'ru' ? 'en' : 'ru'); } catch (e) {}
+      try { sessionStorage.setItem(LANG_KEY, lang === 'ru' ? 'en' : 'ru'); } catch (e) {}
       location.reload();
     });
   }
@@ -477,6 +481,71 @@
     return frag;
   }
 
+  var vpn = false;
+
+  function probeVpn() {
+    if (!SITE.abroad || !window.fetch) return;
+
+    var late = false;
+    var ctl = window.AbortController ? new AbortController() : null;
+    setTimeout(function () {
+      late = true;
+      if (ctl) ctl.abort();
+    }, 2000);
+
+    fetch('https://telegram.org/', {
+      method: 'HEAD',
+      mode: 'no-cors', cache: 'no-store', signal: ctl ? ctl.signal : undefined
+    }).then(function () { if (!late) vpn = true; }, function () {});
+  }
+
+  function outLink(cls, text, href) {
+    var a = el('a', cls, text);
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    return a;
+  }
+
+  function appFoot(v) {
+    var urls = v.urls;
+    if (!urls) return null;
+
+    var home = urls[SITE.apps] || urls.com;
+    var foot = el('div', 'app');
+
+    var go = outLink('app__go', '', home);
+    go.appendChild(el('span', null, TEXT.projects.open));
+    go.appendChild(icon('external'));
+    foot.appendChild(go);
+
+    var abroad = SITE.abroad && urls[SITE.abroad];
+    if (!abroad) return foot;
+
+    var body = el('div', 'app__body');
+    var inner = el('div', 'app__inner');
+    inner.appendChild(el('p', 'app__note', TEXT.projects.vpn.note));
+
+    var row = el('div', 'app__row');
+    row.appendChild(outLink('app__alt app__alt--main', TEXT.projects.vpn.abroad, abroad));
+    row.appendChild(outLink('app__alt', TEXT.projects.vpn.stay, home));
+    inner.appendChild(row);
+
+    inner.inert = true;
+    body.appendChild(inner);
+    foot.appendChild(body);
+
+    go.addEventListener('click', function (e) {
+      if (!vpn) return;
+      e.preventDefault();
+      var on = foot.classList.toggle('is-open');
+      inner.inert = !on;
+      go.setAttribute('aria-expanded', String(on));
+    });
+
+    return foot;
+  }
+
   var narrow = window.matchMedia('(max-width: 1000px)');
   var boards = [];
 
@@ -572,6 +641,9 @@
 
         s.body.textContent = '';
         s.body.appendChild(buildDetails(v));
+
+        var foot = cfg.foot && v.id && cfg.foot(v);
+        if (foot) s.body.appendChild(foot);
       }
 
       syncClose();
@@ -770,7 +842,7 @@
     }
 
     function lit() {
-      var current = map.querySelector('.node [data-id].is-current');
+      var current = map.querySelector('.node.is-current');
       var id = current ? current.dataset.id : null;
 
       $$('.wire', lines).forEach(function (p) {
@@ -851,6 +923,7 @@
     name: 'projects',
     dock: 'modal',
     badge: function (v) { return plate('sheet__app', v.id, v.icon); },
+    foot: appFoot,
     items: ECOSYSTEM.items,
     surface: function (box, hook) {
       var map = el('div', 'map');
@@ -862,17 +935,17 @@
 
         ECOSYSTEM.items.filter(function (w) { return w.tier === kind; })
           .forEach(function (w) {
-            var node = el('div', 'node');
-            node.dataset.id = w.id;
+            var node = el('button', 'node');
+            node.setAttribute('aria-label', TEXT.ui.about + ': ' + w.title);
 
             node.appendChild(plate('node__icon', w.id, w.icon));
             node.appendChild(el('span', 'node__name', w.title));
 
-            var info = el('button', 'node__info', 'i');
-            info.setAttribute('aria-label', TEXT.ui.about + ': ' + w.title);
-            node.appendChild(hook(info, w));
+            var info = el('span', 'node__info', 'i');
+            info.setAttribute('aria-hidden', 'true');
+            node.appendChild(info);
 
-            nodes[w.id] = node;
+            nodes[w.id] = hook(node, w);
             col.appendChild(node);
           });
 
@@ -947,6 +1020,7 @@
 
     initTabs();
     renderLang();
+    probeVpn();
   }
 
   if (document.readyState === 'loading') {

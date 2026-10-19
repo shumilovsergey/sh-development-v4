@@ -268,6 +268,13 @@ const RU = {
       auth:     'Единый вход'
     },
 
+    open: 'Открыть приложение',
+    vpn: {
+      note: 'Похоже, вы используете VPN. Рекомендуем открыть международную версию приложения - на\u00a0.ru доступность не гарантируется.',
+      abroad: 'Открыть .com',
+      stay: 'Продолжить на .ru'
+    },
+
     items: {
       'dev-infra': {
         title: 'dev-infra',
@@ -299,8 +306,8 @@ const RU = {
         ]
       },
 
-      'wget-bash': {
-        title: 'wget-bash',
+      wgetbash: {
+        title: 'wgetbash',
         summary: 'Хранилище для bash-скриптов',
         details: [
           'Доставка на сервер в один клик',

@@ -48,7 +48,7 @@ const SCHEMA = {
 
       { id: 'menu',         tier: 'app' },
       { id: 'nom-nom',      tier: 'app' },
-      { id: 'wget-bash',    tier: 'app' },
+      { id: 'wgetbash',     tier: 'app' },
       { id: 'blur',         tier: 'app' },
       { id: 'qcode',        tier: 'app' },
 
@@ -56,16 +56,39 @@ const SCHEMA = {
       { id: 'auth-miniapp', tier: 'auth' }
     ],
 
+    urls: {
+      menu: {
+        ru:  'https://menu.sh-development.ru',
+        com: 'https://menu.sh-development.com'
+      },
+      'nom-nom': {
+        ru:  'https://nom-nom.sh-development.ru',
+        com: 'https://nom-nom.sh-development.com'
+      },
+      wgetbash: {
+        ru:  'https://wgetbash.sh-development.ru',
+        com: 'https://wgetbash.sh-development.com'
+      },
+      blur: {
+        ru:  'https://blur.sh-development.ru',
+        com: 'https://blur.sh-development.com'
+      },
+      qcode: {
+        ru:  'https://qcode.sh-development.ru',
+        com: 'https://qcode.sh-development.com'
+      }
+    },
+
     edges: [
       ['dev-infra', 'menu'],
       ['dev-infra', 'nom-nom'],
-      ['dev-infra', 'wget-bash'],
+      ['dev-infra', 'wgetbash'],
       ['dev-infra', 'blur'],
       ['dev-infra', 'qcode'],
 
       ['menu',      'auth-center'],
       ['nom-nom',   'auth-center'],
-      ['wget-bash', 'auth-center'],
+      ['wgetbash',  'auth-center'],
       ['blur',      'auth-center'],
       ['qcode',     'auth-center'],
 

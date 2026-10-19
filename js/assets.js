@@ -25,7 +25,7 @@ const ASSETS = {
 
     menu:        'static/icons/menu.svg',
     'nom-nom':   'static/icons/nom-nom.svg',
-    'wget-bash': 'static/icons/wget-bash.svg',
+    wgetbash:    'static/icons/wgetbash.svg',
     qcode:       'static/icons/qcode.svg',
     blur:        'static/icons/blur.svg',
     'auth-center': 'static/icons/auth.svg',

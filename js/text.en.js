@@ -268,6 +268,13 @@ const EN = {
       auth:     'Single sign-on'
     },
 
+    open: 'Open app',
+    vpn: {
+      note: 'Looks like you are using a VPN. We recommend the international version of the app - availability on\u00a0.ru is not guaranteed.',
+      abroad: 'Open .com',
+      stay: 'Continue on .ru'
+    },
+
     items: {
       'dev-infra': {
         summary: 'Isolated infrastructure for development and testing',
@@ -293,7 +300,7 @@ const EN = {
           'AI food analysis from a photo'
         ]
       },
-      'wget-bash': {
+      wgetbash: {
         summary: 'A home for your bash scripts',
         details: [
           'One-click delivery to a server',

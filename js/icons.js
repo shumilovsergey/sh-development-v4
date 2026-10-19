@@ -28,6 +28,11 @@ const ICONS = {
   check:
     '<polyline points="4 12.5 9.5 18 20 6.5"/>',
 
+  external:
+    '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>' +
+    '<polyline points="15 3 21 3 21 9"/>' +
+    '<line x1="10" y1="14" x2="21" y2="3"/>',
+
   platform:
     '<rect x="3" y="4" width="18" height="6" rx="1.5"/>' +
     '<rect x="3" y="14" width="18" height="6" rx="1.5"/>' +
