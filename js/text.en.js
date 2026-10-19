@@ -270,7 +270,7 @@ const EN = {
 
     open: 'Open app',
     vpn: {
-      note: 'Looks like you are using a VPN. We recommend the international version of the app - availability on\u00a0.ru is not guaranteed.',
+      note: 'Looks like you are on a VPN - .ru may not open with it. I recommend the\u00a0.com location',
       abroad: 'Open .com',
       stay: 'Continue on .ru'
     },

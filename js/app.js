@@ -526,9 +526,17 @@
     var inner = el('div', 'app__inner');
     inner.appendChild(el('p', 'app__note', TEXT.projects.vpn.note));
 
+    var zone = function (cls, glyph, name, label, href) {
+      var a = outLink(cls, '', href);
+      a.setAttribute('aria-label', label);
+      a.appendChild(icon(glyph));
+      a.appendChild(el('span', null, '.' + name));
+      return a;
+    };
+
     var row = el('div', 'app__row');
-    row.appendChild(outLink('app__alt app__alt--main', TEXT.projects.vpn.abroad, abroad));
-    row.appendChild(outLink('app__alt', TEXT.projects.vpn.stay, home));
+    row.appendChild(zone('app__alt app__alt--main', 'lang', SITE.abroad, TEXT.projects.vpn.abroad, abroad));
+    row.appendChild(zone('app__alt', 'lang-off', SITE.apps, TEXT.projects.vpn.stay, home));
     inner.appendChild(row);
 
     inner.inert = true;

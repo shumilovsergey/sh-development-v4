@@ -917,7 +917,8 @@ a  { color: inherit; }
   border-radius: .8rem;
   transition: color .18s ease, background .18s ease, border-color .18s ease;
 }
-.app__go .icon { width: 1.05rem; height: 1.05rem; }
+.app__go .icon,
+.app__alt .icon { width: 1.05rem; height: 1.05rem; }
 .app__go:hover,
 .app__alt:hover,
 .app.is-open .app__go { color: var(--ink); background: var(--accent-bg); border-color: var(--accent-line); }
@@ -937,7 +938,7 @@ a  { color: inherit; }
   color: var(--ink-read);
 }
 .app__row {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: .6rem;
   margin-top: 1rem;
 }
 .app__alt { font-size: .9rem; color: var(--ink-soft); white-space: nowrap; }
