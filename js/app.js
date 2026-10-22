@@ -508,19 +508,19 @@
   }
 
   function appFoot(v) {
-    var urls = v.urls;
-    var home = urls && urls[SITE.apps];
-    if (!home) return null;
+    var urls = v.urls || {};
+    var home = urls[SITE.apps];
+    var abroad = SITE.abroad && urls[SITE.abroad];
+    if (!home && !(vpn && abroad)) return null;
 
     var foot = el('div', 'app');
 
-    var go = outLink('app__go', '', home);
+    var go = outLink('app__go', '', home || abroad);
     go.appendChild(el('span', null, TEXT.projects.open));
     go.appendChild(icon('external'));
     foot.appendChild(go);
 
-    var abroad = SITE.abroad && urls[SITE.abroad];
-    if (!abroad) return foot;
+    if (!home || !abroad) return foot;
 
     var body = el('div', 'app__body');
     var inner = el('div', 'app__inner');
