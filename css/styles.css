@@ -560,15 +560,16 @@ a  { color: inherit; }
 @media (max-width: 880px) {
   .map {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.8rem; max-width: 24rem; margin-inline: auto;
+    gap: 3.2rem; max-width: 24rem; margin-inline: auto;
   }
   .wires { display: none; }
   .map__col--auth { gap: 1rem; }
   .map__col--platform { order: 1; }
 
+  .map__col { position: relative; }
   .map__col::before {
     content: attr(data-label);
-    display: block; margin-bottom: .3rem;
+    position: absolute; bottom: 100%; margin-bottom: .45rem;
     font-size: .74rem; letter-spacing: .08em; text-transform: uppercase;
     color: var(--ink-faint);
   }
@@ -678,16 +679,29 @@ a  { color: inherit; }
 
 .career > .sheet { margin-top: calc(var(--rule-gap) - 4px); }
 
-@media (max-width: 1000px) {
-  .career {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "head" "roster";
-  }
+.ladder {
+  margin: 1.1rem auto 0; padding: 0; list-style: none;
+  max-width: 24rem;
+  display: none; gap: 3.2rem;
 }
-@media (max-width: 620px) {
-  .track { grid-template-columns: repeat(2, 1fr); row-gap: 1.8rem; }
 
-  .track::after { display: none; }
+.ladder__step { position: relative; }
+
+.ladder__mark {
+  position: absolute; bottom: 100%; margin-bottom: .45rem;
+  font-size: .74rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.node--role { padding: 0 1.35rem; justify-content: center; text-align: center; }
+.node--role .node__name { white-space: normal; }
+
+@media (max-width: 1000px) {
+  .career { display: block; }
+  .career > .roster, .track { display: none; }
+  .ladder { display: grid; }
+
+  .career > .sheet { margin-top: 0; }
 }
 
 .sheet { align-self: stretch; min-width: 0; }
@@ -1006,7 +1020,7 @@ body.is-locked .navbar {
   .panel--projects,
   .panel--career { break-before: page; width: 100%; padding-top: 0; }
 
-  .sheet, .scrim, .map, .track, .roster { display: none !important; }
+  .sheet, .scrim, .map, .track, .roster, .ladder { display: none !important; }
   .cards { display: none !important; }
   .catalog { display: block; }
 

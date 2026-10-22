@@ -348,9 +348,13 @@ const EN = {
         role: 'Infrastructure Administration Engineer',
         company: 'Expoforum',
         period: '- present',
+        summary: 'Convention and exhibition complex',
         details: [
-          'Running the Linux infrastructure',
-          'Deploying and supporting applications'
+          'The company\'s entire Linux infrastructure',
+          'CI/CD and application support',
+          'Server and service administration',
+          'Monitoring, troubleshooting, incident response',
+          'Backups, recovery, documentation'
         ]
       },
 

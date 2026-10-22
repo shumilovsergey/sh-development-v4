@@ -560,7 +560,6 @@
   function board(cfg) {
     var sheetId = cfg.name + '-sheet';
     var titleId = cfg.name + '-sheet-title';
-    var modal = cfg.dock === 'modal';
     var bare = !cfg.dock;
 
     var s = {
@@ -572,14 +571,9 @@
     var targets = [];
 
     function buildSheet() {
-      var root = el('aside', 'sheet'
-        + (modal ? ' sheet--modal' : ''));
+      var root = el('aside', 'sheet');
       root.id = sheetId;
       root.setAttribute('aria-labelledby', titleId);
-      if (modal) {
-        root.setAttribute('role', 'dialog');
-        root.setAttribute('aria-modal', 'true');
-      }
 
       var sticky = el('div', 'sheet__sticky');
       var inner = el('div', 'sheet__inner');
@@ -612,19 +606,35 @@
       s.body = body;
       s.close = close;
       s.scrim = scrim;
+      syncDock();
+    }
+
+    function modal() {
+      return cfg.dock === 'modal' || (cfg.narrowDock === 'modal' && narrow.matches);
+    }
+    function syncDock() {
+      var on = modal();
+      s.root.classList.toggle('sheet--modal', on);
+      if (on) {
+        s.root.setAttribute('role', 'dialog');
+        s.root.setAttribute('aria-modal', 'true');
+      } else {
+        s.root.removeAttribute('role');
+        s.root.removeAttribute('aria-modal');
+      }
     }
 
     function hidden() {
-      return !s.open && (modal || narrow.matches);
+      return !s.open && (modal() || narrow.matches);
     }
     function syncInert() { if (!bare) s.root.inert = hidden(); }
     function syncClose() {
-      if (!bare) s.close.hidden = !modal && (!away() || !!homeId());
+      if (!bare) s.close.hidden = !modal() && (!away() || !!homeId());
     }
 
-    function locks() { return !bare && !!s.open && (modal || narrow.matches); }
+    function locks() { return !bare && !!s.open && (modal() || narrow.matches); }
 
-    function viewOf(item) { return cfg.view ? cfg.view(item) : item; }
+    function viewOf(item, popup) { return cfg.view ? cfg.view(item, !!popup) : item; }
 
     function homeId() {
       return cfg.home && (bare || !narrow.matches) ? cfg.home.id : null;
@@ -642,7 +652,7 @@
       // it only ever shows a picked entry. Repainting it on the way out swaps
       // the text under the closing fade, which reads as a blink, so leave the
       // last entry in place and let it fade out as itself.
-      if (!bare && (s.open || !modal)) {
+      if (!bare && (s.open || !modal())) {
         s.title.textContent = '';
         if (cfg.badge && v.id) s.title.appendChild(cfg.badge(v));
         s.title.appendChild(document.createTextNode(v.title || ''));
@@ -672,9 +682,9 @@
 
     function open(item) {
       var was = s.open;
-      fill(viewOf(item));
+      fill(viewOf(item, modal()));
 
-      if (!bare && !was && (modal || narrow.matches)) s.close.focus();
+      if (!bare && !was && (modal() || narrow.matches)) s.close.focus();
     }
 
     function reset(focusBack) {
@@ -737,6 +747,7 @@
       });
 
       var onBreak = function () {
+        if (!bare) syncDock();
         if (!away()) fill(rest());
         syncClose();
         document.body.classList.toggle('is-locked', locks());
@@ -972,11 +983,12 @@
   var careerBoard = board({
     name: 'career',
     dock: 'column',
+    narrowDock: 'modal',
     items: CAREER.items,
     home: CAREER.items[0],
-    view: function (r) {
+    view: function (r, popup) {
       return {
-        id: r.id, title: r.role,
+        id: r.id, title: popup ? r.stage.replace(/\n/g, ' ') : r.role,
         summary: r.summary, details: r.details
       };
     },
@@ -1007,7 +1019,21 @@
         list.appendChild(row);
       });
 
+      var ladder = el('ol', 'ladder');
+
+      CAREER.items.forEach(function (r) {
+        var rung = el('button', 'node node--role');
+        rung.setAttribute('aria-label', TEXT.ui.about + ': ' + r.role);
+        rung.appendChild(el('span', 'node__name', r.stage.replace(/\n/g, ' ')));
+
+        var step = el('li', 'ladder__step');
+        step.appendChild(el('span', 'ladder__mark', r.mark));
+        step.appendChild(hook(rung, r));
+        ladder.appendChild(step);
+      });
+
       box.appendChild(track);
+      box.appendChild(ladder);
       mount('career-roster').appendChild(list);
     }
   });
