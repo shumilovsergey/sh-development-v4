@@ -509,9 +509,9 @@
 
   function appFoot(v) {
     var urls = v.urls;
-    if (!urls) return null;
+    var home = urls && urls[SITE.apps];
+    if (!home) return null;
 
-    var home = urls[SITE.apps] || urls.com;
     var foot = el('div', 'app');
 
     var go = outLink('app__go', '', home);

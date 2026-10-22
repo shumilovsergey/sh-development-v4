@@ -76,6 +76,9 @@ const SCHEMA = {
       qcode: {
         ru:  'https://qcode.sh-development.ru',
         com: 'https://qcode.sh-development.com'
+      },
+      'auth-miniapp': {
+        com: 'https://t.me/sh_devment_bot'
       }
     },
 
