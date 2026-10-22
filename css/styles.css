@@ -14,6 +14,8 @@
   --accent-bg: rgba(255,255,255,.08);
   --accent-line: rgba(255,255,255,.22);
 
+  --spot: .06;
+
   --tile-ring: rgba(255,255,255,.34);
   --tile-ring-on: rgba(255,255,255,.62);
   --info-bg: #1f1f21;
@@ -171,14 +173,17 @@ a  { color: inherit; }
 .navbar__lang:hover { color: var(--ink); background: var(--accent-bg); }
 .navbar__lang .icon { width: 1.05rem; height: 1.05rem; }
 
+@media (max-width: 520px) {
+  .navbar__lang { padding: .52rem; }
+  .navbar__lang span { display: none; }
+}
+
 @media (max-width: 460px) {
   .navbar { padding: .32rem .36rem; }
   .navlink { padding: .48rem .58rem; font-size: .8rem; }
   .navbar__list { gap: 0; }
   .navbar__sep { margin: 0 .1rem; }
-  .navbar__lang { padding: .45rem .5rem; font-size: .82rem; }
-
-  .navbar__lang span { display: none; }
+  .navbar__lang { padding: .45rem; }
 }
 
 .screen {
@@ -410,11 +415,15 @@ a  { color: inherit; }
   .cards { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  .cards { grid-template-columns: 1fr; width: 100%; max-width: 24rem; margin-inline: auto; }
+}
 
 .card {
   font: inherit; color: inherit; text-align: left; cursor: pointer;
-  background: var(--bg-soft);
+  background:
+    radial-gradient(16rem 4.5rem at 50% -1rem, rgba(255,255,255,var(--spot)), transparent 70%),
+    var(--bg-soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
   overflow: hidden;
@@ -495,7 +504,9 @@ a  { color: inherit; }
   position: relative; width: 100%;
   font: inherit; color: inherit; text-align: left;
   cursor: pointer;
-  background: var(--bg-soft);
+  background:
+    radial-gradient(16rem 4.5rem at 50% -1rem, rgba(255,255,255,var(--spot)), transparent 70%),
+    var(--bg-soft);
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
   overflow: hidden;
@@ -693,7 +704,7 @@ a  { color: inherit; }
   color: var(--ink-faint);
 }
 
-.node--role { padding: 0 1.35rem; justify-content: center; text-align: center; }
+.node--role { --spot: .11; padding: 0 1.35rem; justify-content: center; text-align: center; }
 .node--role .node__name { white-space: normal; }
 
 @media (max-width: 1000px) {
